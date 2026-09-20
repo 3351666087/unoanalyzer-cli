@@ -6,11 +6,29 @@ import { CURATED_ENDPOINTS } from "../curated.js";
 import { log } from "./ui.js";
 import type { Endpoint, Manifest } from "../types.js";
 
-/** Merge curated + discovered endpoints. Curated wins on METHOD+path collisions. */
+/**
+ * Merge curated + discovered endpoints.
+ *
+ * For a shared METHOD+path, the curated entry provides the human id/description
+ * and readable param names, but LIVE-discovered `bodyFields` / `multipart` win
+ * so the manifest tracks the platform: if the app renames a request field,
+ * `uno sync` picks it up and convenience commands follow (see resolveBodyField).
+ */
 export function mergeEndpoints(discovered: Endpoint[]): Endpoint[] {
+  const discByKey = new Map<string, Endpoint>();
+  for (const e of discovered) discByKey.set(e.method + " " + e.path, e);
+
   const byKey = new Map<string, Endpoint>();
   for (const e of discovered) byKey.set(e.method + " " + e.path, e);
-  for (const e of CURATED_ENDPOINTS) byKey.set(e.method + " " + e.path, e); // curated overrides
+  for (const c of CURATED_ENDPOINTS) {
+    const key = c.method + " " + c.path;
+    const disc = discByKey.get(key);
+    byKey.set(key, {
+      ...c,
+      bodyFields: disc?.bodyFields?.length ? disc.bodyFields : c.bodyFields,
+      multipart: c.multipart ?? disc?.multipart,
+    });
+  }
   return [...byKey.values()].sort(
     (a, b) => a.category.localeCompare(b.category) || a.path.localeCompare(b.path)
   );

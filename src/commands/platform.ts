@@ -126,6 +126,7 @@ export function register(program: Command): void {
               ["source", e.source],
               ["multipart", e.multipart ? "yes" : "no"],
               ["params", e.params.map((p) => `${p.name}${p.required ? "*" : ""}(${p.in})`).join(", ") || "—"],
+              ["body fields", e.bodyFields?.join(", ") || "—"],
               ["description", e.description ?? "—"],
             ])
           );

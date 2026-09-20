@@ -111,8 +111,11 @@ uno api POST /api/cn/records -d '{"title":"X","date":"2026-09-20"}'
 uno api GET courses/ent207tc_2026/proof-activity
 ```
 
-Discover the exact path/params/body for anything with `uno describe <id>` or by
-reading `references/endpoints.md`.
+Discover the exact path/params/**body fields** for anything with
+`uno describe <id>` or by reading `references/endpoints.md`. The body-field list
+is refreshed by `uno sync` from the live app, so build request bodies from it
+(e.g. task creation uses `title`, joining a course uses `course_code`) rather
+than guessing — that is how the CLI stays correct as the platform changes.
 
 ## 5. How auth works (for debugging)
 

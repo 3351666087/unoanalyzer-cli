@@ -109,6 +109,66 @@ function inlineHelpers(tpl: string, helpers: Map<string, string>): string {
   return out;
 }
 
+/** Top-level object keys inside a `{...}` block body (ignores nested/strings). */
+function topLevelKeys(content: string): string[] {
+  const keys: string[] = [];
+  let depth = 0;
+  let str: string | null = null;
+  let token = "";
+  for (let i = 0; i < content.length; i++) {
+    const ch = content[i];
+    if (str) {
+      if (ch === str && content[i - 1] !== "\\") str = null;
+      continue;
+    }
+    if (ch === '"' || ch === "'" || ch === "`") {
+      str = ch;
+      continue;
+    }
+    if (ch === "{" || ch === "[" || ch === "(") {
+      depth++;
+      continue;
+    }
+    if (ch === "}" || ch === "]" || ch === ")") {
+      depth--;
+      continue;
+    }
+    if (depth !== 0) continue;
+    if (/[A-Za-z0-9_$]/.test(ch)) token += ch;
+    else if (ch === ":") {
+      if (token) keys.push(token);
+      token = "";
+    } else if (/\s/.test(ch)) {
+      /* keep pending token: handles `key : value` */
+    } else {
+      token = "";
+    }
+  }
+  return [...new Set(keys)].filter((k) => /^[A-Za-z_$]/.test(k) && k.length <= 40);
+}
+
+/** Extract the top-level field names of an inline `body:{...}` literal in opts. */
+function bodyFieldsFrom(opts: string): string[] | undefined {
+  const bi = opts.search(/\bbody\s*:/);
+  if (bi === -1) return undefined;
+  const brace = opts.indexOf("{", bi);
+  if (brace === -1) return undefined;
+  // `body:` must be followed directly by `{` (a literal), not a variable.
+  if (opts.slice(opts.indexOf(":", bi) + 1, brace).trim() !== "") return undefined;
+  let depth = 0;
+  let end = -1;
+  for (let k = brace; k < opts.length; k++) {
+    if (opts[k] === "{") depth++;
+    else if (opts[k] === "}" && --depth === 0) {
+      end = k;
+      break;
+    }
+  }
+  const content = end === -1 ? opts.slice(brace + 1) : opts.slice(brace + 1, end);
+  const keys = topLevelKeys(content);
+  return keys.length ? keys : undefined;
+}
+
 /** Extract endpoints from one chunk of JS source. */
 function extractEndpoints(src: string, category: string, taken: Set<string>): Endpoint[] {
   const helpers = collectHelpers(src);
@@ -128,6 +188,7 @@ function extractEndpoints(src: string, category: string, taken: Set<string>): En
     const methodMatch = opts.match(/method:\s*["'`](\w+)["'`]/);
     const method = (methodMatch ? methodMatch[1] : "GET").toUpperCase();
     const multipart = /multipart\s*:\s*!?0|multipart\s*:\s*true|multipart:!0/.test(opts);
+    const bodyFields = bodyFieldsFrom(opts);
     const key = method + " " + norm.path;
     if (seen.has(key)) continue;
     seen.add(key);
@@ -138,6 +199,7 @@ function extractEndpoints(src: string, category: string, taken: Set<string>): En
       category,
       params: norm.params,
       ...(multipart ? { multipart: true } : {}),
+      ...(bodyFields ? { bodyFields } : {}),
       source: "discovered",
     });
   }

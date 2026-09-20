@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { action, opts } from "../core/run.js";
 import { api } from "../core/client.js";
-import { studentUid, resolveCourse, present, type Course } from "../core/context.js";
+import { studentUid, resolveCourse, present, resolveBodyField, type Course } from "../core/context.js";
 import { c, log, table, keyValue, truncate } from "../core/ui.js";
 
 interface Assessment {
@@ -172,7 +172,8 @@ export function register(program: Command): void {
           log.info(c.yellow(`\nRun again with --yes to join ${code}.`));
           return;
         }
-        const result = await api.post(`/courses/join`, { code });
+        const codeField = resolveBodyField("course.join", ["course_code", "code"]);
+        const result = await api.post(`/courses/join`, { [codeField]: code });
         present(json, result, () => log.ok(`Joined ${code}.`));
       })
     );

@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { action, opts } from "../core/run.js";
 import { api } from "../core/client.js";
-import { studentUid, present } from "../core/context.js";
+import { studentUid, present, resolveBodyField, endpointHasField } from "../core/context.js";
 import { c, log, table, truncate } from "../core/ui.js";
 
 export function register(program: Command): void {
@@ -30,11 +30,16 @@ export function register(program: Command): void {
   space
     .command("create <name>")
     .description("Create a personal space")
+    .option("--type <space_type>", "space type (e.g. hobby, project, volunteering)", "hobby")
     .action(
       action(async function (this: Command, name: string) {
         const { json } = opts(this);
+        const o = this.opts();
         const uid = studentUid();
-        const created = await api.post<any>(`/student/${uid}/spaces`, { name });
+        const nameField = resolveBodyField("space.create", ["name"]);
+        const body: Record<string, unknown> = { [nameField]: name };
+        if (endpointHasField("space.create", "space_type")) body.space_type = o.type;
+        const created = await api.post<any>(`/student/${uid}/spaces`, body);
         present(json, created, () => log.ok(`Created space "${name}".`));
       })
     );

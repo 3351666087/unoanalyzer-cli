@@ -1,7 +1,8 @@
 import { loadSession } from "./session.js";
 import { api } from "./client.js";
 import { AuthRequiredError } from "./errors.js";
-import { printJson } from "./ui.js";
+import { printJson, log } from "./ui.js";
+import { loadManifest, findEndpoint } from "./manifest.js";
 import type { UserProfile } from "../types.js";
 
 export interface Course {
@@ -60,4 +61,42 @@ export async function myGroup(courseId: string): Promise<Group | null> {
 export function present(json: boolean, data: unknown, human: () => void): void {
   if (json) printJson(data);
   else human();
+}
+
+/**
+ * Pick the request-body field name to use for a convenience command, based on
+ * the *current* manifest rather than a hardcoded literal — so the CLI keeps
+ * working after `uno sync` if the platform renames a field.
+ *
+ * `candidates` are known aliases in preference order. If the endpoint's live
+ * bodyFields contain one of them, that one is used. If none match but the
+ * endpoint advertises exactly one unknown field, we adopt it (with a warning).
+ * Otherwise we fall back to the first candidate.
+ */
+export function resolveBodyField(endpointId: string, candidates: string[]): string {
+  const ep = findEndpoint(loadManifest(), endpointId);
+  const fields = ep?.bodyFields ?? [];
+  if (fields.length === 0) return candidates[0];
+  for (const c of candidates) if (fields.includes(c)) return c;
+  // Platform may have renamed the field. If there's a single plausible field,
+  // adopt it; otherwise keep the expected name and let the caller/API report.
+  const scalarish = fields.filter((f) => !/^(mode|history|signed|keep_private)$/.test(f));
+  if (scalarish.length === 1) {
+    log.warn(
+      `Endpoint ${endpointId} field looks renamed (${candidates[0]} → ${scalarish[0]}); using "${scalarish[0]}". Run \`uno describe ${endpointId}\`.`
+    );
+    return scalarish[0];
+  }
+  log.warn(
+    `Endpoint ${endpointId} no longer advertises "${candidates[0]}" (has: ${fields.join(", ") || "none"}). Using it anyway; try \`uno call ${endpointId} -d '{...}'\`.`
+  );
+  return candidates[0];
+}
+
+/** True when the current manifest says this endpoint accepts the given field. */
+export function endpointHasField(endpointId: string, field: string): boolean {
+  const ep = findEndpoint(loadManifest(), endpointId);
+  // If we have no body info at all, don't block optional fields.
+  if (!ep?.bodyFields || ep.bodyFields.length === 0) return true;
+  return ep.bodyFields.includes(field);
 }

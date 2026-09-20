@@ -1,13 +1,13 @@
 {
-  "syncedAt": "2026-09-20T07:48:39.824Z",
-  "bundleHash": "CJGwzuIP",
-  "count": 323,
+  "syncedAt": "2026-09-20T09:34:21.872Z",
+  "bundleHash": "COpd18M4",
+  "count": 318,
   "endpoints": [
     {
       "id": "get_admin_full_script",
       "method": "GET",
       "path": "/api/admin/full-script",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "uid",
@@ -21,7 +21,7 @@
       "id": "get_admin_institutions",
       "method": "GET",
       "path": "/api/admin/institutions",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "uid",
@@ -35,7 +35,7 @@
       "id": "post_admin_institutions_institutionid_subaccounts",
       "method": "POST",
       "path": "/api/admin/institutions/:institutionId/subaccounts",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "institutionId",
@@ -43,13 +43,16 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "caller_uid"
+      ],
       "source": "discovered"
     },
     {
       "id": "get_admin_prompts",
       "method": "GET",
       "path": "/api/admin/prompts",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "uid",
@@ -63,7 +66,7 @@
       "id": "put_admin_prompts_promptid",
       "method": "PUT",
       "path": "/api/admin/prompts/:promptId",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "promptId",
@@ -71,13 +74,16 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "caller_uid"
+      ],
       "source": "discovered"
     },
     {
       "id": "get_admin_users",
       "method": "GET",
       "path": "/api/admin/users",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "uid",
@@ -91,7 +97,7 @@
       "id": "delete_admin_users_userid",
       "method": "DELETE",
       "path": "/api/admin/users/:userId",
-      "category": "admin",
+      "category": "admin-CZs8Lp",
       "params": [
         {
           "name": "userId",
@@ -132,6 +138,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "name",
+        "country",
+        "domain"
+      ],
       "source": "discovered"
     },
     {
@@ -145,6 +156,10 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "email",
+        "role"
       ],
       "source": "discovered"
     },
@@ -401,8 +416,13 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "message",
+        "mode",
+        "history"
+      ],
       "source": "curated",
-      "description": "Ask the course assistant. Body: { message }."
+      "description": "Ask the course assistant. Body: { message, mode?(assistant|socratic), history? }; reply in .response."
     },
     {
       "id": "chat.history",
@@ -755,6 +775,10 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "name",
+        "looking_for_skills"
+      ],
       "source": "discovered"
     },
     {
@@ -773,6 +797,9 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "note"
       ],
       "source": "discovered"
     },
@@ -878,6 +905,10 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "body",
+        "senderName"
       ],
       "source": "discovered"
     },
@@ -1040,7 +1071,7 @@
       "id": "get_courses_courseid_materials_materialid_url_2",
       "method": "GET",
       "path": "/api/courses/:courseId/materials/:materialId/url",
-      "category": "CourseAlignmentPage-Bucy03",
+      "category": "CourseAlignmentPage-DFsJ_C",
       "params": [
         {
           "name": "courseId",
@@ -1053,83 +1084,6 @@
           "required": true
         }
       ],
-      "source": "discovered"
-    },
-    {
-      "id": "post_courses_courseid_regenerate_lo_capabilities",
-      "method": "POST",
-      "path": "/api/cn/courses/:courseId/regenerate-lo-capabilities",
-      "category": "courseCapabilities",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_nace_taxonomy",
-      "method": "GET",
-      "path": "/api/cn/nace/taxonomy",
-      "category": "courseCapabilities",
-      "params": [],
-      "source": "discovered"
-    },
-    {
-      "id": "post_courses_courseid_regenerate_lo_capabilities_2",
-      "method": "POST",
-      "path": "/api/courses/:courseId/regenerate-lo-capabilities",
-      "category": "courseCapabilities",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "post_courses_staging_stagingid_assessments_assessmentid_generate_capabilities",
-      "method": "POST",
-      "path": "/api/courses/staging/:stagingId/assessments/:assessmentId/generate-capabilities",
-      "category": "courseCapabilities",
-      "params": [
-        {
-          "name": "stagingId",
-          "in": "path",
-          "required": true
-        },
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "post_courses_staging_stagingid_generate_lo_capabilities",
-      "method": "POST",
-      "path": "/api/courses/staging/:stagingId/generate-lo-capabilities",
-      "category": "courseCapabilities",
-      "params": [
-        {
-          "name": "stagingId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_nace_taxonomy_2",
-      "method": "GET",
-      "path": "/api/nace/taxonomy",
-      "category": "courseCapabilities",
-      "params": [],
       "source": "discovered"
     },
     {
@@ -1239,6 +1193,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "student_id",
+        "course_id",
+        "message"
+      ],
       "source": "discovered"
     },
     {
@@ -1321,6 +1280,15 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "name",
+        "code",
+        "term",
+        "description",
+        "totalWeeks",
+        "startDate",
+        "skipWeeks"
       ],
       "source": "discovered"
     },
@@ -1446,7 +1414,10 @@
         }
       ],
       "source": "curated",
-      "description": "Submit a response to an open survey."
+      "description": "Submit a response to an open survey.",
+      "bodyFields": [
+        "answers"
+      ]
     },
     {
       "id": "course.surveysOpen",
@@ -1490,6 +1461,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "layers"
+      ],
       "source": "discovered"
     },
     {
@@ -1513,8 +1487,11 @@
       "path": "/api/cn/courses/join",
       "category": "courses",
       "params": [],
+      "bodyFields": [
+        "course_code"
+      ],
       "source": "curated",
-      "description": "Join a course. Body: { code }."
+      "description": "Join a course. Body: { course_code }."
     },
     {
       "id": "get_student_studentid_courses",
@@ -1716,6 +1693,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "topic",
+        "count",
+        "types"
+      ],
       "source": "discovered"
     },
     {
@@ -1862,6 +1844,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "locked"
+      ],
       "source": "discovered"
     },
     {
@@ -1900,6 +1885,25 @@
       "path": "/api/submissions",
       "category": "documents",
       "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_student_studentid_assessments_assessmentid_feedback_absorption",
+      "method": "GET",
+      "path": "/api/student/:studentId/assessments/:assessmentId/feedback-absorption",
+      "category": "DraftProgressionPage",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "assessmentId",
+          "in": "path",
+          "required": true
+        }
+      ],
       "source": "discovered"
     },
     {
@@ -2008,7 +2012,7 @@
       "id": "post_faculty_application",
       "method": "POST",
       "path": "/api/v1/faculty-application",
-      "category": "FacultyApplyModal",
+      "category": "FacultyApplyModal-XP0jb7",
       "params": [],
       "source": "discovered"
     },
@@ -2023,6 +2027,10 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "from_date",
+        "to_date"
       ],
       "source": "discovered"
     },
@@ -2103,6 +2111,10 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "brief_text",
+        "course_id"
       ],
       "source": "discovered"
     },
@@ -2234,8 +2246,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "email"
+      ],
       "source": "curated",
-      "description": "Invite a member to the group."
+      "description": "Invite a member to the group. Body: { email }."
     },
     {
       "id": "group.setLeader",
@@ -2319,6 +2334,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "name"
+      ],
       "source": "curated",
       "description": "Rename a group. Body: { name }."
     },
@@ -2364,8 +2382,12 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "title",
+        "internal_deadline"
+      ],
       "source": "curated",
-      "description": "Add a task. Body: { text, ... }."
+      "description": "Add a task. Body: { title, internal_deadline? }."
     },
     {
       "id": "group.taskRemove",
@@ -2591,6 +2613,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "student_id",
+        "student_name",
+        "course_id"
+      ],
       "source": "discovered"
     },
     {
@@ -2670,6 +2697,9 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "partner_email"
       ],
       "source": "discovered"
     },
@@ -2880,6 +2910,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "office_hours"
+      ],
       "source": "discovered"
     },
     {
@@ -2922,6 +2955,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "text"
+      ],
       "source": "discovered"
     },
     {
@@ -2936,6 +2972,10 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "session_id",
+        "number"
+      ],
       "source": "discovered"
     },
     {
@@ -2949,6 +2989,9 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "text"
       ],
       "source": "discovered"
     },
@@ -2969,6 +3012,10 @@
           "required": false
         }
       ],
+      "bodyFields": [
+        "sessionId",
+        "number"
+      ],
       "source": "discovered"
     },
     {
@@ -2987,6 +3034,10 @@
           "in": "query",
           "required": false
         }
+      ],
+      "bodyFields": [
+        "taUid",
+        "mentorUid"
       ],
       "source": "discovered"
     },
@@ -3046,8 +3097,11 @@
       "path": "/api/cn/to-english",
       "category": "misc",
       "params": [],
+      "bodyFields": [
+        "items"
+      ],
       "source": "curated",
-      "description": "Translate text to English. Body: { text }."
+      "description": "Translate to English. Body: { items: [{ key, text }] }; result in .english."
     },
     {
       "id": "get_moderation",
@@ -3246,6 +3300,9 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "text"
+      ],
       "source": "discovered"
     },
     {
@@ -3264,6 +3321,9 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "text"
       ],
       "source": "discovered"
     },
@@ -3286,6 +3346,11 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "status",
+        "vettedBy",
+        "caller_uid"
       ],
       "source": "discovered"
     },
@@ -3393,6 +3458,11 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "teamName",
+        "members",
+        "leadUid"
+      ],
       "source": "discovered"
     },
     {
@@ -3426,6 +3496,10 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "feedback",
+        "role"
+      ],
       "source": "discovered"
     },
     {
@@ -3453,6 +3527,10 @@
           "in": "path",
           "required": true
         }
+      ],
+      "bodyFields": [
+        "status",
+        "approvedBy"
       ],
       "source": "discovered"
     },
@@ -3570,6 +3648,18 @@
       "path": "/api/cn/records",
       "category": "records",
       "params": [],
+      "bodyFields": [
+        "title",
+        "description",
+        "date",
+        "space",
+        "space_id",
+        "course_id",
+        "context_type",
+        "location",
+        "link_url",
+        "keep_private"
+      ],
       "source": "curated",
       "description": "Create a record. Body: { title, description?, date, course_id?, space_id?, context_type?, location?, link_url?, keep_private? }."
     },
@@ -3652,7 +3742,11 @@
         }
       ],
       "source": "curated",
-      "description": "Verify a record (peer/staff)."
+      "description": "Verify a record (peer/staff).",
+      "bodyFields": [
+        "verdict",
+        "comment"
+      ]
     },
     {
       "id": "records.analyzePhoto",
@@ -3966,6 +4060,10 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "keep_profile_private",
+        "profile_visible_sections"
+      ],
       "source": "discovered"
     },
     {
@@ -4015,8 +4113,12 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "name",
+        "space_type"
+      ],
       "source": "curated",
-      "description": "Create a personal space. Body: { name }."
+      "description": "Create a personal space. Body: { name, space_type } (space_type defaults to 'hobby')."
     },
     {
       "id": "space.delete",
@@ -4245,7 +4347,7 @@
       "id": "get_ta_invites",
       "method": "GET",
       "path": "/api/ta-invites",
-      "category": "ta",
+      "category": "ta-Coo_YQ",
       "params": [],
       "source": "discovered"
     },
@@ -4253,7 +4355,7 @@
       "id": "post_ta_invites_tainviteid_revoke",
       "method": "POST",
       "path": "/api/ta-invites/:taInviteId/revoke",
-      "category": "ta",
+      "category": "ta-Coo_YQ",
       "params": [
         {
           "name": "taInviteId",
@@ -4267,7 +4369,7 @@
       "id": "get_ta_invites_by_token_bytokenid",
       "method": "GET",
       "path": "/api/ta-invites/by-token/:byTokenId",
-      "category": "ta",
+      "category": "ta-Coo_YQ",
       "params": [
         {
           "name": "byTokenId",
@@ -4281,7 +4383,7 @@
       "id": "get_ta_invites_claim",
       "method": "GET",
       "path": "/api/ta-invites/claim",
-      "category": "ta",
+      "category": "ta-Coo_YQ",
       "params": [],
       "source": "discovered"
     },
@@ -4404,8 +4506,19 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "teamName",
+        "sessionGroupTable",
+        "members",
+        "kanbanStatus",
+        "proofUploaded",
+        "summaryOfWork",
+        "challenges",
+        "helpRequested",
+        "supportOutcome"
+      ],
       "source": "curated",
-      "description": "Set the whole group's weekly log for a week."
+      "description": "Set the whole group's weekly log. Body: { summaryOfWork, challenges, helpRequested, supportOutcome, ... }."
     },
     {
       "id": "weeklyLog.myEntry",
@@ -4429,8 +4542,12 @@
           "required": true
         }
       ],
+      "bodyFields": [
+        "reflection",
+        "signed"
+      ],
       "source": "curated",
-      "description": "Submit/update MY entry for a week. Body: the entry object."
+      "description": "Submit/update MY entry for a week. Body: { reflection, signed }."
     },
     {
       "id": "weeklyLog.screenshotUpload",
@@ -4492,7 +4609,7 @@
       "id": "get_courses_courseid_groups_groupid_weekly_logs_weeklylogid",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId",
-      "category": "weeklyLog-D8R8",
+      "category": "weeklyLog",
       "params": [
         {
           "name": "courseId",
@@ -4516,7 +4633,7 @@
       "id": "put_courses_courseid_groups_groupid_weekly_logs_weeklylogid",
       "method": "PUT",
       "path": "/api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId",
-      "category": "weeklyLog-D8R8",
+      "category": "weeklyLog",
       "params": [
         {
           "name": "courseId",
@@ -4540,7 +4657,7 @@
       "id": "put_courses_courseid_groups_groupid_weekly_logs_weeklylogid_my_entry",
       "method": "PUT",
       "path": "/api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId/my-entry",
-      "category": "weeklyLog-D8R8",
+      "category": "weeklyLog",
       "params": [
         {
           "name": "courseId",
@@ -4564,7 +4681,7 @@
       "id": "delete_courses_courseid_groups_groupid_weekly_logs_weeklylogid_screenshot",
       "method": "DELETE",
       "path": "/api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId/screenshot",
-      "category": "weeklyLog-D8R8",
+      "category": "weeklyLog",
       "params": [
         {
           "name": "courseId",
@@ -4593,7 +4710,7 @@
       "id": "post_courses_courseid_groups_groupid_weekly_logs_weeklylogid_screenshot",
       "method": "POST",
       "path": "/api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId/screenshot",
-      "category": "weeklyLog-D8R8",
+      "category": "weeklyLog",
       "params": [
         {
           "name": "courseId",

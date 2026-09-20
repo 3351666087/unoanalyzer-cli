@@ -53,6 +53,13 @@ export interface Endpoint {
   params: EndpointParam[];
   /** true when the request sends multipart/form-data (file upload). */
   multipart?: boolean;
+  /**
+   * Top-level request-body field names, when the app builds the body as an
+   * inline object literal at the call site. Discovered fields are refreshed by
+   * `uno sync`, so convenience commands and `uno describe` stay in step with
+   * the platform even if it renames a field.
+   */
+  bodyFields?: string[];
   /** Short human description (curated when known). */
   description?: string;
   /** How this entry was produced. */

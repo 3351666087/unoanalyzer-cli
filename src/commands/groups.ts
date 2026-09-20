@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { action, opts } from "../core/run.js";
 import { api } from "../core/client.js";
-import { resolveCourse, myGroup, present } from "../core/context.js";
+import { resolveCourse, myGroup, present, resolveBodyField, endpointHasField } from "../core/context.js";
 import { c, log, table, keyValue, truncate } from "../core/ui.js";
 
 async function requireGroup(idOrCode: string) {
@@ -107,13 +107,21 @@ export function register(program: Command): void {
     );
 
   group
-    .command("task-add <idOrCode> <text>")
+    .command("task-add <idOrCode> <title>")
     .description("Add a task to your group")
+    .option("--deadline <date>", "internal deadline (ISO date)")
     .action(
-      action(async function (this: Command, idOrCode: string, text: string) {
+      action(async function (this: Command, idOrCode: string, title: string) {
         const { json } = opts(this);
+        const o = this.opts();
         const { group } = await requireGroup(idOrCode);
-        const result = await api.post(`/groups/${group.id}/tasks`, { text });
+        // Field name comes from the live manifest, not a hardcoded literal.
+        const titleField = resolveBodyField("group.taskAdd", ["title", "text", "name"]);
+        const body: Record<string, unknown> = { [titleField]: title };
+        if (o.deadline && endpointHasField("group.taskAdd", "internal_deadline")) {
+          body.internal_deadline = o.deadline;
+        }
+        const result = await api.post(`/groups/${group.id}/tasks`, body);
         present(json, result, () => log.ok("Task added."));
       })
     );

@@ -1,7 +1,7 @@
 import { Command } from "commander";
 import { action, opts } from "../core/run.js";
 import { api } from "../core/client.js";
-import { resolveCourse, myGroup, present } from "../core/context.js";
+import { resolveCourse, myGroup, present, resolveBodyField, endpointHasField } from "../core/context.js";
 import { c, log, table, truncate } from "../core/ui.js";
 
 async function ctx(idOrCode: string) {
@@ -53,24 +53,28 @@ export function register(program: Command): void {
 
   logCmd
     .command("submit <idOrCode> <week>")
-    .description("Submit/update YOUR entry for a week")
-    .option("-t, --text <text>", "free-text contribution (sent as { text })")
-    .option("-d, --data <json>", "full entry object as JSON (overrides --text)")
+    .description("Submit/update YOUR weekly entry (your reflection)")
+    .option("-r, --reflection <text>", "your reflection for the week")
+    .option("--no-sign", "do not mark the entry as signed")
+    .option("-d, --data <json>", "full entry object as JSON (overrides --reflection)")
     .action(
       action(async function (this: Command, idOrCode: string, week: string) {
         const { json } = opts(this);
         const o = this.opts();
-        let body: unknown;
+        let body: Record<string, unknown>;
         if (o.data) {
           try {
             body = JSON.parse(o.data);
           } catch {
             throw new Error("--data must be valid JSON");
           }
-        } else if (o.text) {
-          body = { text: o.text };
+        } else if (o.reflection) {
+          // Field names come from the live manifest (see uno describe weeklyLog.myEntry).
+          const field = resolveBodyField("weeklyLog.myEntry", ["reflection", "text"]);
+          body = { [field]: o.reflection };
+          if (endpointHasField("weeklyLog.myEntry", "signed")) body.signed = o.sign !== false;
         } else {
-          throw new Error("Provide --text or --data with the entry content.");
+          throw new Error("Provide --reflection or --data with the entry content.");
         }
         const { co, group } = await ctx(idOrCode);
         const result = await api.put(`/courses/${co.id}/groups/${group.id}/weekly-logs/${encodeURIComponent(week)}/my-entry`, body);

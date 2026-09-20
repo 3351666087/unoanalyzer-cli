@@ -1,9 +1,9 @@
 # UnoAnalyzer API — discovered endpoint catalogue
 
-> Snapshot from platform build `CJGwzuIP` on 2026-09-20T07:48:39.824Z. 323 endpoints.
+> Snapshot from platform build `COpd18M4` on 2026-09-20T09:34:21.872Z. 318 endpoints.
 > Regenerate the live version any time with: `uno sync && uno endpoints --json`.
 
-Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
+Legend: **[C]** curated & verified · plain = auto-discovered (best-effort). Request-body fields, when known, are shown in {braces}.
 
 ## AdminCoursesPage
 
@@ -11,8 +11,8 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 ## AdminSettingsPage
 
-- `PATCH /api/institutions/:institutionId`  `id: patch_institutions_institutionid`
-- `POST /api/institutions/:institutionId/subaccounts`  `id: post_institutions_institutionid_subaccounts`
+- `PATCH /api/institutions/:institutionId`  body {name, country, domain}  `id: patch_institutions_institutionid`
+- `POST /api/institutions/:institutionId/subaccounts`  body {email, role}  `id: post_institutions_institutionid_subaccounts`
 
 ## AdminSignupAllowlistPage
 
@@ -47,10 +47,10 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 ## CompetitionsDiscoverPage
 
 - `GET /api/cn/competitions/:competitionId/teams`  `id: get_competitions_competitionid_teams`
-- `POST /api/cn/competitions/:competitionId/teams`  `id: post_competitions_competitionid_teams`
-- `POST /api/cn/competitions/:competitionId/teams/:teamId/apply`  `id: post_competitions_competitionid_teams_teamid_apply`
+- `POST /api/cn/competitions/:competitionId/teams`  body {name, looking_for_skills}  `id: post_competitions_competitionid_teams`
+- `POST /api/cn/competitions/:competitionId/teams/:teamId/apply`  body {note}  `id: post_competitions_competitionid_teams_teamid_apply`
 
-## CourseAlignmentPage-Bucy03
+## CourseAlignmentPage-DFsJ_C
 
 - `GET /api/courses/:courseId/materials/:materialId/url`  `id: get_courses_courseid_materials_materialid_url_2`
 
@@ -61,18 +61,22 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 ## CourseSchedulingPage
 
-- `POST /api/cn/courses/:courseId/staff-schedule-lock`  `id: post_courses_courseid_staff_schedule_lock`
+- `POST /api/cn/courses/:courseId/staff-schedule-lock`  body {locked}  `id: post_courses_courseid_staff_schedule_lock`
 
 ## DashboardPage
 
 - `GET /api/cn/student/:studentId/briefing`  `id: get_student_studentid_briefing`
 - `GET /api/users/me/onboarding`  `id: get_users_me_onboarding`
 
+## DraftProgressionPage
+
+- `GET /api/student/:studentId/assessments/:assessmentId/feedback-absorption`  `id: get_student_studentid_assessments_assessmentid_feedback_absorption`
+
 ## English
 
 - `GET /api/cn/to-english`  `id: get_to_english`
 
-## FacultyApplyModal
+## FacultyApplyModal-XP0jb7
 
 - `POST /api/v1/faculty-application`  `id: post_faculty_application`
 
@@ -127,7 +131,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 - `GET /api/auth/2fa`  `id: get_auth_2fa`
 - `GET /api/cn/users/:userId`  `id: get_users_userid_2`
-- `PATCH /api/cn/users/:userId`  `id: patch_users_userid`
+- `PATCH /api/cn/users/:userId`  body {keep_profile_private, profile_visible_sections}  `id: patch_users_userid`
 
 ## StaffQuestionsCard
 
@@ -149,13 +153,13 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 - `GET /api/courses/extract-syllabus`  `id: get_courses_extract_syllabus_2`
 
-## admin
+## admin-CZs8Lp
 
 - `GET /api/admin/full-script`  `id: get_admin_full_script`
 - `GET /api/admin/institutions`  `id: get_admin_institutions`
-- `POST /api/admin/institutions/:institutionId/subaccounts`  `id: post_admin_institutions_institutionid_subaccounts`
+- `POST /api/admin/institutions/:institutionId/subaccounts`  body {caller_uid}  `id: post_admin_institutions_institutionid_subaccounts`
 - `GET /api/admin/prompts`  `id: get_admin_prompts`
-- `PUT /api/admin/prompts/:promptId`  `id: put_admin_prompts_promptid`
+- `PUT /api/admin/prompts/:promptId`  body {caller_uid}  `id: put_admin_prompts_promptid`
 - `GET /api/admin/users`  `id: get_admin_users`
 - `DELETE /api/admin/users/:userId`  `id: delete_admin_users_userid`
 
@@ -167,7 +171,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 ## assistant
 
-- **[C]** `POST /api/cn/student/:studentUid/course/:courseId/chat` — Ask the course assistant. Body: { message }.  `id: chat.send`
+- **[C]** `POST /api/cn/student/:studentUid/course/:courseId/chat` — Ask the course assistant. Body: { message, mode?(assistant|socratic), history? }; reply in .response.  body {message, mode, history}  `id: chat.send`
 - **[C]** `GET /api/cn/student/:studentUid/course/:courseId/chat/history` — Course assistant chat history.  `id: chat.history`
 
 ## batches
@@ -210,7 +214,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/cn/users/me`  `id: get_users_me`
 - `GET /api/early_access_features/`  `id: get_early_access_features`
 - `GET /api/partner/:partnerId/messages`  `id: get_partner_partnerid_messages`
-- `POST /api/partner/:partnerId/messages/:messageId`  `id: post_partner_partnerid_messages_messageid`
+- `POST /api/partner/:partnerId/messages/:messageId`  body {body, senderName}  `id: post_partner_partnerid_messages_messageid`
 - `GET /api/partner/:partnerId/notifications`  `id: get_partner_partnerid_notifications`
 - `POST /api/partner/:partnerId/notifications/:notificationId/read`  `id: post_partner_partnerid_notifications_notificationid_read`
 - `POST /api/partner/:partnerId/notifications/read-all`  `id: post_partner_partnerid_notifications_read_all`
@@ -224,21 +228,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/users/:userId`  `id: get_users_userid`
 - `GET /api/web_experiments/`  `id: get_web_experiments`
 
-## courseCapabilities
-
-- `POST /api/cn/courses/:courseId/regenerate-lo-capabilities`  `id: post_courses_courseid_regenerate_lo_capabilities`
-- `GET /api/cn/nace/taxonomy`  `id: get_nace_taxonomy`
-- `POST /api/courses/:courseId/regenerate-lo-capabilities`  `id: post_courses_courseid_regenerate_lo_capabilities_2`
-- `POST /api/courses/staging/:stagingId/assessments/:assessmentId/generate-capabilities`  `id: post_courses_staging_stagingid_assessments_assessmentid_generate_capabilities`
-- `POST /api/courses/staging/:stagingId/generate-lo-capabilities`  `id: post_courses_staging_stagingid_generate_lo_capabilities`
-- `GET /api/nace/taxonomy`  `id: get_nace_taxonomy_2`
-
 ## courseIntelligence
 
 - `GET /api/cn/student/:studentId/course/:courseId/chat`  `id: get_student_studentid_course_courseid_chat`
 - `GET /api/cn/student/:studentId/course/:courseId/chat/history`  `id: get_student_studentid_course_courseid_chat_history`
 - `GET /api/faculty/:facultyId/course/:courseId/engagement-signals`  `id: get_faculty_facultyid_course_courseid_engagement_signals`
-- `POST /api/faculty/:facultyId/nudge-student`  `id: post_faculty_facultyid_nudge_student`
+- `POST /api/faculty/:facultyId/nudge-student`  body {student_id, course_id, message}  `id: post_faculty_facultyid_nudge_student`
 - `GET /api/student/:studentId/course/:courseId/chat`  `id: get_student_studentid_course_courseid_chat_2`
 - `GET /api/student/:studentId/course/:courseId/chat/history`  `id: get_student_studentid_course_courseid_chat_history_2`
 
@@ -247,7 +242,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/activity`  `id: get_activity`
 - `POST /api/assessments/:assessmentId/human-grades`  `id: post_assessments_assessmentid_human_grades`
 - `GET /api/cn/courses`  `id: get_courses_2`
-- `PATCH /api/cn/courses/:courseId`  `id: patch_courses_courseid`
+- `PATCH /api/cn/courses/:courseId`  body {name, code, term, description, totalWeeks, startDate, skipWeeks}  `id: patch_courses_courseid`
 - **[C]** `GET /api/cn/courses/:courseId` — Full course detail: assessments, milestones, sessions, materials, weights.  `id: course.detail`
 - **[C]** `GET /api/cn/courses/:courseId/handbook` — Course handbook brief.  `id: course.handbook`
 - **[C]** `GET /api/cn/courses/:courseId/messages` — Course broadcast messages.  `id: course.messages`
@@ -255,12 +250,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - **[C]** `GET /api/cn/courses/:courseId/my-mentor` — My assigned mentor and their office hours.  `id: course.myMentor`
 - **[C]** `GET /api/cn/courses/:courseId/proof-activity` — Recent evidence/proof activity across the course.  `id: course.proofActivity`
 - `GET /api/cn/courses/:courseId/roster`  `id: get_courses_courseid_roster`
-- **[C]** `POST /api/cn/courses/:courseId/surveys/:surveyId/responses` — Submit a response to an open survey.  `id: course.surveyRespond`
+- **[C]** `POST /api/cn/courses/:courseId/surveys/:surveyId/responses` — Submit a response to an open survey.  body {answers}  `id: course.surveyRespond`
 - **[C]** `GET /api/cn/courses/:courseId/surveys/open` — Currently open staff surveys.  `id: course.surveysOpen`
 - **[C]** `GET /api/cn/courses/:courseId/verification-layers` — Enabled and available evidence verification layers.  `id: course.verificationLayers`
-- `PUT /api/cn/courses/:courseId/verification-layers`  `id: put_courses_courseid_verification_layers`
+- `PUT /api/cn/courses/:courseId/verification-layers`  body {layers}  `id: put_courses_courseid_verification_layers`
 - **[C]** `GET /api/cn/courses/code/:code/preview` — Preview a course from its join code before joining.  `id: course.previewCode`
-- **[C]** `POST /api/cn/courses/join` — Join a course. Body: { code }.  `id: course.join`
+- **[C]** `POST /api/cn/courses/join` — Join a course. Body: { course_code }.  body {course_code}  `id: course.join`
 - `GET /api/cn/student/:studentId/courses`  `id: get_student_studentid_courses`
 - **[C]** `GET /api/cn/student/:studentUid/courses` — Courses I have joined (with nested assessments).  `id: courses.list`
 - `GET /api/cn/upload/material`  `id: get_upload_material`
@@ -273,7 +268,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `PATCH /api/courses/:courseId/assessments/:assessmentId`  `id: patch_courses_courseid_assessments_assessmentid`
 - `DELETE /api/courses/:courseId/assessments/:assessmentId`  `id: delete_courses_courseid_assessments_assessmentid`
 - `POST /api/courses/:courseId/assessments/:assessmentId/:arg3`  `id: post_courses_courseid_assessments_assessmentid_arg3`
-- `POST /api/courses/:courseId/find-readings`  `id: post_courses_courseid_find_readings`
+- `POST /api/courses/:courseId/find-readings`  body {topic, count, types}  `id: post_courses_courseid_find_readings`
 - `GET /api/courses/:courseId/learning-outcomes`  `id: get_courses_courseid_learning_outcomes`
 - `GET /api/courses/:courseId/quality`  `id: get_courses_courseid_quality`
 - `POST /api/courses/:courseId/sessions`  `id: post_courses_courseid_sessions`
@@ -301,12 +296,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 ## facultyIntelligence
 
-- `POST /api/faculty/:facultyId/cpd/generate-statement`  `id: post_faculty_facultyid_cpd_generate_statement`
+- `POST /api/faculty/:facultyId/cpd/generate-statement`  body {from_date, to_date}  `id: post_faculty_facultyid_cpd_generate_statement`
 - `POST /api/faculty/:facultyId/live-projects`  `id: post_faculty_facultyid_live_projects`
 - `GET /api/faculty/:facultyId/live-projects`  `id: get_faculty_facultyid_live_projects`
 - `GET /api/faculty/:facultyId/live-projects/:liveProjectId/progress`  `id: get_faculty_facultyid_live_projects_liveprojectid_progress`
 - `POST /api/faculty/:facultyId/live-projects/:liveProjectId/progress-report`  `id: post_faculty_facultyid_live_projects_liveprojectid_progress_report`
-- `POST /api/faculty/:facultyId/translate-brief`  `id: post_faculty_facultyid_translate_brief`
+- `POST /api/faculty/:facultyId/translate-brief`  body {brief_text, course_id}  `id: post_faculty_facultyid_translate_brief`
 
 ## groups
 
@@ -317,15 +312,15 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - **[C]** `POST /api/cn/groups/:groupId/contribution-read` — Mark contribution activity as read.  `id: group.contributionRead`
 - **[C]** `POST /api/cn/groups/:groupId/files` — Upload a file to the group (multipart 'file').  `id: group.fileUpload`
 - **[C]** `DELETE /api/cn/groups/:groupId/files/:fileId` — Delete a group file.  `id: group.fileRemove`
-- **[C]** `POST /api/cn/groups/:groupId/invite` — Invite a member to the group.  `id: group.invite`
+- **[C]** `POST /api/cn/groups/:groupId/invite` — Invite a member to the group. Body: { email }.  body {email}  `id: group.invite`
 - **[C]** `PUT /api/cn/groups/:groupId/leader` — Set the group leader.  `id: group.setLeader`
 - **[C]** `POST /api/cn/groups/:groupId/leave` — Leave a group.  `id: group.leave`
 - **[C]** `GET /api/cn/groups/:groupId/milestone-completions` — Milestone completion state for a group.  `id: group.milestoneCompletions`
 - **[C]** `POST /api/cn/groups/:groupId/milestone-completions/:milestoneId/toggle` — Toggle a milestone's completion.  `id: group.toggleMilestone`
-- **[C]** `PATCH /api/cn/groups/:groupId/name` — Rename a group. Body: { name }.  `id: group.rename`
+- **[C]** `PATCH /api/cn/groups/:groupId/name` — Rename a group. Body: { name }.  body {name}  `id: group.rename`
 - **[C]** `PUT /api/cn/groups/:groupId/project` — Set/choose the group's project.  `id: group.setProject`
 - **[C]** `GET /api/cn/groups/:groupId/student-activity` — Per-student contribution activity in a group.  `id: group.studentActivity`
-- **[C]** `POST /api/cn/groups/:groupId/tasks` — Add a task. Body: { text, ... }.  `id: group.taskAdd`
+- **[C]** `POST /api/cn/groups/:groupId/tasks` — Add a task. Body: { title, internal_deadline? }.  body {title, internal_deadline}  `id: group.taskAdd`
 - **[C]** `DELETE /api/cn/groups/:groupId/tasks/:taskId` — Remove a task.  `id: group.taskRemove`
 - `GET /api/courses/:courseId/groups/mine`  `id: get_courses_courseid_groups_mine`
 
@@ -343,12 +338,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `POST /api/cn/courses/:courseId/code`  `id: post_courses_courseid_code`
 - `GET /api/cn/courses/:courseId/sections/:sectionId/course-code`  `id: get_courses_courseid_sections_sectionid_course_code`
 - `POST /api/cn/groups/:groupId/invite-link`  `id: post_groups_groupid_invite_link`
-- `POST /api/cn/groups/join/:joinId`  `id: post_groups_join_joinid`
+- `POST /api/cn/groups/join/:joinId`  body {student_id, student_name, course_id}  `id: post_groups_join_joinid`
 - `GET /api/courses/:courseId/course-code`  `id: get_courses_courseid_course_code`
 - `GET /api/courses/:courseId/sections/:sectionId/course-code`  `id: get_courses_courseid_sections_sectionid_course_code_2`
 - `GET /api/courses/:courseId/student-invites`  `id: get_courses_courseid_student_invites`
 - `POST /api/courses/:courseId/student-invites/:studentInviteId/resend`  `id: post_courses_courseid_student_invites_studentinviteid_resend`
-- `POST /api/faculty/:facultyId/invite-partner`  `id: post_faculty_facultyid_invite_partner`
+- `POST /api/faculty/:facultyId/invite-partner`  body {partner_email}  `id: post_faculty_facultyid_invite_partner`
 - `GET /api/faculty/:facultyId/invites`  `id: get_faculty_facultyid_invites`
 - `POST /api/student-invites/:studentInviteId/accept`  `id: post_student_invites_studentinviteid_accept`
 - `GET /api/student-invites/pending`  `id: get_student_invites_pending`
@@ -361,14 +356,14 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/cn/courses/:courseId/message-history`  `id: get_courses_courseid_message_history`
 - `GET /api/cn/courses/:courseId/my-questions`  `id: get_courses_courseid_my_questions`
 - `GET /api/cn/courses/:courseId/proposals/pending`  `id: get_courses_courseid_proposals_pending`
-- `PUT /api/cn/courses/:courseId/staff/:staffId/office-hours`  `id: put_courses_courseid_staff_staffid_office_hours`
+- `PUT /api/cn/courses/:courseId/staff/:staffId/office-hours`  body {office_hours}  `id: put_courses_courseid_staff_staffid_office_hours`
 - `PATCH /api/cn/groups/:groupId/assignments`  `id: patch_groups_groupid_assignments`
 - `GET /api/cn/groups/:groupId/mentor-questions`  `id: get_groups_groupid_mentor_questions`
-- `POST /api/cn/groups/:groupId/mentor-questions`  `id: post_groups_groupid_mentor_questions`
-- `PATCH /api/cn/groups/:groupId/placement`  `id: patch_groups_groupid_placement`
-- `POST /api/cn/mentor-questions/:mentorQuestionId/answers`  `id: post_mentor_questions_mentorquestionid_answers`
-- `PATCH /api/groups/:groupId/placement`  `id: patch_groups_groupid_placement_2`
-- `PATCH /api/groups/:groupId/staff-assignment`  `id: patch_groups_groupid_staff_assignment`
+- `POST /api/cn/groups/:groupId/mentor-questions`  body {text}  `id: post_groups_groupid_mentor_questions`
+- `PATCH /api/cn/groups/:groupId/placement`  body {session_id, number}  `id: patch_groups_groupid_placement`
+- `POST /api/cn/mentor-questions/:mentorQuestionId/answers`  body {text}  `id: post_mentor_questions_mentorquestionid_answers`
+- `PATCH /api/groups/:groupId/placement`  body {sessionId, number}  `id: patch_groups_groupid_placement_2`
+- `PATCH /api/groups/:groupId/staff-assignment`  body {taUid, mentorUid}  `id: patch_groups_groupid_staff_assignment`
 - `GET /api/mentor-invites`  `id: get_mentor_invites`
 - `POST /api/mentor-invites/:mentorInviteId/revoke`  `id: post_mentor_invites_mentorinviteid_revoke`
 - `GET /api/mentor-invites/by-token/:byTokenId`  `id: get_mentor_invites_by_token_bytokenid`
@@ -376,7 +371,7 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 ## misc
 
-- **[C]** `POST /api/cn/to-english` — Translate text to English. Body: { text }.  `id: toEnglish`
+- **[C]** `POST /api/cn/to-english` — Translate to English. Body: { items: [{ key, text }] }; result in .english.  body {items}  `id: toEnglish`
 
 ## moderation
 
@@ -399,10 +394,10 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/:apiId`  `id: get_apiid`
 - `GET /api/cn/projects/:projectId/groups`  `id: get_projects_projectid_groups`
 - `GET /api/cn/projects/:projectId/questions`  `id: get_projects_projectid_questions`
-- `POST /api/cn/projects/:projectId/questions`  `id: post_projects_projectid_questions`
-- `POST /api/cn/projects/:projectId/questions/:questionId/answers`  `id: post_projects_projectid_questions_questionid_answers`
+- `POST /api/cn/projects/:projectId/questions`  body {text}  `id: post_projects_projectid_questions`
+- `POST /api/cn/projects/:projectId/questions/:questionId/answers`  body {text}  `id: post_projects_projectid_questions_questionid_answers`
 - `GET /api/cn/projects/partner-accounts`  `id: get_projects_partner_accounts`
-- `PATCH /api/partners/:partnerId/status`  `id: patch_partners_partnerid_status`
+- `PATCH /api/partners/:partnerId/status`  body {status, vettedBy, caller_uid}  `id: patch_partners_partnerid_status`
 - `GET /api/projects`  `id: get_projects`
 - `GET /api/projects/:projectId`  `id: get_projects_projectid`
 - `PATCH /api/projects/:projectId`  `id: patch_projects_projectid`
@@ -410,11 +405,11 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 - `GET /api/projects/:projectId/nda-url`  `id: get_projects_projectid_nda_url`
 - `GET /api/projects/:projectId/submissions`  `id: get_projects_projectid_submissions`
 - `GET /api/projects/:projectId/teams`  `id: get_projects_projectid_teams`
-- `POST /api/projects/:projectId/teams`  `id: post_projects_projectid_teams`
+- `POST /api/projects/:projectId/teams`  body {teamName, members, leadUid}  `id: post_projects_projectid_teams`
 - `GET /api/projects/:projectId/teams/mine`  `id: get_projects_projectid_teams_mine`
-- `POST /api/submissions/:submissionId/feedback`  `id: post_submissions_submissionid_feedback`
+- `POST /api/submissions/:submissionId/feedback`  body {feedback, role}  `id: post_submissions_submissionid_feedback`
 - `POST /api/teams/:teamId/leave`  `id: post_teams_teamid_leave`
-- `PATCH /api/teams/:teamId/status`  `id: patch_teams_teamid_status`
+- `PATCH /api/teams/:teamId/status`  body {status, approvedBy}  `id: patch_teams_teamid_status`
 - `GET /api/upload/material`  `id: get_upload_material_3`
 
 ## proposals
@@ -429,12 +424,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 ## records
 
 - **[C]** `GET /api/cn/records` — My evidence records.  `id: records.list`
-- **[C]** `POST /api/cn/records` — Create a record. Body: { title, description?, date, course_id?, space_id?, context_type?, location?, link_url?, keep_private? }.  `id: records.create`
+- **[C]** `POST /api/cn/records` — Create a record. Body: { title, description?, date, course_id?, space_id?, context_type?, location?, link_url?, keep_private? }.  body {title, description, date, space, space_id, course_id, context_type, location, link_url, keep_private}  `id: records.create`
 - **[C]** `DELETE /api/cn/records/:recordId` — Delete a record.  `id: records.delete`
 - **[C]** `GET /api/cn/records/:recordId` — Get a record with matched sub-capabilities.  `id: records.get`
 - **[C]** `POST /api/cn/records/:recordId/proof` — Attach proof: multipart 'file', or form field 'link_url'.  `id: records.proofUpload`
 - **[C]** `DELETE /api/cn/records/:recordId/proof` — Remove an attached proof by index.  `id: records.proofDelete`
-- **[C]** `POST /api/cn/records/:recordId/verify` — Verify a record (peer/staff).  `id: records.verify`
+- **[C]** `POST /api/cn/records/:recordId/verify` — Verify a record (peer/staff).  body {verdict, comment}  `id: records.verify`
 - **[C]** `POST /api/cn/records/analyze-photo` — AI-suggest title/description/date/location from a photo (multipart 'file').  `id: records.analyzePhoto`
 - `GET /api/v1/records/analyse-proof`  `id: get_records_analyse_proof`
 
@@ -460,11 +455,11 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 - **[C]** `POST /api/cn/student/:studentUid/courses/:courseId/ensure-space` — Ensure a course-linked space exists.  `id: space.ensureForCourse`
 - **[C]** `GET /api/cn/student/:studentUid/spaces` — My personal spaces.  `id: spaces.list`
-- **[C]** `POST /api/cn/student/:studentUid/spaces` — Create a personal space. Body: { name }.  `id: space.create`
+- **[C]** `POST /api/cn/student/:studentUid/spaces` — Create a personal space. Body: { name, space_type } (space_type defaults to 'hobby').  body {name, space_type}  `id: space.create`
 - **[C]** `DELETE /api/cn/student/:studentUid/spaces/:spaceId` — Delete a personal space.  `id: space.delete`
 - **[C]** `GET /api/cn/student/:studentUid/spaces/:spaceId/records` — Records inside a space.  `id: space.records`
 
-## ta
+## ta-Coo_YQ
 
 - `GET /api/ta-invites`  `id: get_ta_invites`
 - `POST /api/ta-invites/:taInviteId/revoke`  `id: post_ta_invites_tainviteid_revoke`
@@ -483,12 +478,12 @@ Legend: **[C]** curated & verified · plain = auto-discovered (best-effort).
 
 - **[C]** `GET /api/cn/courses/:courseId/groups/:groupId/weekly-logs` — All weekly logs for a group. Returns { logs }.  `id: weeklyLog.list`
 - **[C]** `GET /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week` — A single week's log entry.  `id: weeklyLog.get`
-- **[C]** `PUT /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week` — Set the whole group's weekly log for a week.  `id: weeklyLog.setGroup`
-- **[C]** `PUT /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week/my-entry` — Submit/update MY entry for a week. Body: the entry object.  `id: weeklyLog.myEntry`
+- **[C]** `PUT /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week` — Set the whole group's weekly log. Body: { summaryOfWork, challenges, helpRequested, supportOutcome, ... }.  body {teamName, sessionGroupTable, members, kanbanStatus, proofUploaded, summaryOfWork, challenges, helpRequested, supportOutcome}  `id: weeklyLog.setGroup`
+- **[C]** `PUT /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week/my-entry` — Submit/update MY entry for a week. Body: { reflection, signed }.  body {reflection, signed}  `id: weeklyLog.myEntry`
 - **[C]** `POST /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week/screenshot` — Attach a screenshot to a weekly log (multipart 'file').  `id: weeklyLog.screenshotUpload`
 - **[C]** `DELETE /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:week/screenshot` — Delete a weekly-log screenshot by storage key.  `id: weeklyLog.screenshotDelete`
 
-## weeklyLog-D8R8
+## weeklyLog
 
 - `GET /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId`  `id: get_courses_courseid_groups_groupid_weekly_logs_weeklylogid`
 - `PUT /api/cn/courses/:courseId/groups/:groupId/weekly-logs/:weeklyLogId`  `id: put_courses_courseid_groups_groupid_weekly_logs_weeklylogid`
