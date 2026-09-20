@@ -1,0 +1,46 @@
+{
+  "name": "unoanalyzer-cli",
+  "version": "0.1.0",
+  "description": "Self-updating command-line client for the UnoAnalyzer learning-intelligence platform (cn.unoanalyzer.com). Built around the ENT207TC student workflow, but auto-discovers the platform's full API so its command set stays in sync as the platform evolves.",
+  "type": "module",
+  "bin": {
+    "uno": "dist/index.js",
+    "unoanalyzer": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "skills",
+    "API.md",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json && chmod +x dist/index.js",
+    "dev": "node --experimental-strip-types src/index.ts",
+    "start": "node dist/index.js",
+    "prepublishOnly": "npm run build",
+    "clean": "rm -rf dist"
+  },
+  "keywords": [
+    "unoanalyzer",
+    "cli",
+    "ent207tc",
+    "xjtlu",
+    "learning-analytics",
+    "supabase",
+    "self-updating"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "commander": "^12.1.0",
+    "undici": "^6.21.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.4",
+    "typescript": "^5.6.2"
+  }
+}

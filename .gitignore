@@ -1,0 +1,12 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# Never commit local credentials / sessions (also live in ~/.unoanalyzer)
+.unoanalyzer/
+credentials.json
+session.json
+*.token
+.env
+.env.*
