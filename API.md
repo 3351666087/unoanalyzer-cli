@@ -10,7 +10,7 @@ student workflow. Verified live on 2026-09-20 against platform build `CJGwzuIP`.
 >
 > The `uno` CLI in this repo can regenerate a full, current machine-readable
 > catalogue at any time: `uno sync && uno endpoints --json`
-> (see also [`skills/unoanalyzer/references/endpoints.md`](skills/unoanalyzer/references/endpoints.md), 323 endpoints).
+> (see also [`agent/references/endpoints.md`](agent/references/endpoints.md), 323 endpoints).
 
 ---
 

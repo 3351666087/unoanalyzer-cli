@@ -9,7 +9,8 @@
   },
   "files": [
     "dist",
-    "skills",
+    "agent",
+    "AGENTS.md",
     "API.md",
     "README.md",
     "LICENSE"

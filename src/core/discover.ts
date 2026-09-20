@@ -6,7 +6,7 @@
  * value. This is what lets the CLI stay in sync with the platform: when the
  * app is rebuilt the entry-bundle hash changes, `uno sync` re-runs this, and
  * newly added endpoints immediately become available via `uno endpoints` /
- * `uno call` and in the agent skill's reference catalog.
+ * `uno call` and in the agent guide's reference catalog.
  */
 import { log } from "./ui.js";
 import type { Endpoint, EndpointParam, Manifest } from "../types.js";

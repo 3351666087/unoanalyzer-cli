@@ -32,7 +32,7 @@ export interface TokenGrant {
 }
 
 // ---------------------------------------------------------------------------
-// Endpoint manifest (drives dynamic commands + the agent skill)
+// Endpoint manifest (drives dynamic commands + the agent guide)
 // ---------------------------------------------------------------------------
 
 export interface EndpointParam {
@@ -73,7 +73,7 @@ export interface Manifest {
     supabasePublishableKey: string;
     apiPrefixes: string[];
   };
-  /** All SPA route paths (useful reference for the agent skill). */
+  /** All SPA route paths (useful reference for the agent guide). */
   routes: string[];
   endpoints: Endpoint[];
 }

@@ -13,7 +13,7 @@
 - **与平台与时俱进** — 内置发现引擎实时抓取线上 SPA，提取当前**全部 API 端点**（本次 323 个）、
   路由和平台配置。平台重新部署后 `uno sync` 一跑即同步，新端点立刻通过 `uno call` / `uno endpoints` 可用。
 - **精致的学生命令** + **通用逃生舱** — 常用操作有专门命令；任何端点都能用 `uno call <id>` 或 `uno api <方法> <路径>` 调用。
-- **可被 AI 驱动** — 附带 [Agent Skill](skills/unoanalyzer/SKILL.md)，让 LLM 深刻掌握整套端点并代你操作。
+- **可被任意 AI Agent 驱动** — 附带框架无关的 [Agent 操作指南](agent/AGENT.md)，让任何 LLM/agent 深刻掌握整套端点并代你操作（不限 Claude）。
 - **脚本友好** — 所有命令支持 `--json`；支持 `HTTP(S)_PROXY`。
 - 运行时仅一个第三方依赖（`commander`）+ `undici`（代理支持）。
 
@@ -114,19 +114,33 @@ uno api POST /api/cn/records -d '{"title":"X","date":"2026-09-20"}'
 环境变量：`UNO_HOME`（配置目录）、`UNO_EMAIL`/`UNO_PASSWORD`、`UNO_DEBUG=1`（打印 HTTP 细节）、
 `UNO_BACKEND_URL`/`UNO_APP_URL`（指向测试环境）、`HTTP(S)_PROXY`。
 
-## 文档 & Agent Skill
+## 文档 & Agent 接入
 
 - 人类可读 API 文档：[`API.md`](API.md)
-- 完整端点目录快照：[`skills/unoanalyzer/references/endpoints.md`](skills/unoanalyzer/references/endpoints.md)
-- Agent Skill（供 Claude 等 LLM 使用）：[`skills/unoanalyzer/SKILL.md`](skills/unoanalyzer/SKILL.md)
+- 完整端点目录快照：[`agent/references/endpoints.md`](agent/references/endpoints.md)
+- **通用 Agent 操作指南**（框架无关）：[`agent/AGENT.md`](agent/AGENT.md)
+- 跨 agent 约定入口：[`AGENTS.md`](AGENTS.md)
 
-### 安装 Agent Skill（Claude Code）
+### 让任意 AI Agent 操作它（不限 Claude）
 
-```bash
-cp -r skills/unoanalyzer ~/.claude/skills/unoanalyzer
-```
+`agent/AGENT.md` 是纯 Markdown、不含任何厂商专属格式，任何能“执行 shell 命令”的
+agent 都能用。把它（可选加上 `endpoints.md`）作为系统上下文/工具说明即可：
 
-之后向 Claude Code 说“帮我看看 ENT207TC 本周要做什么”“提交我的周记”等，它会自动调用 `uno`。
+- **任意工具调用型 LLM**（Claude / GPT / Gemini / 本地模型…）：把 `agent/AGENT.md`
+  内容放进 system prompt / 上下文，并给 agent 一个 shell 工具，它就会自己发 `uno …` 命令。
+- **LangChain / AutoGen / CrewAI / 自研循环**：把该文件作为“运行 shell 命令”工具的
+  描述或检索文档载入。
+- **读取 `AGENTS.md` 的编码 agent**（Codex / Cursor / Windsurf …）：仓库根的
+  [`AGENTS.md`](AGENTS.md) 已指向操作指南，开箱即用。
+- **Claude Code / Anthropic Agent Skills**：`agent/AGENT.md` 末尾给了转成 SKILL.md
+  的 3 行 front-matter 模板：
+
+  ```bash
+  mkdir -p ~/.claude/skills/unoanalyzer
+  { printf -- '---\nname: unoanalyzer\ndescription: Operate the UnoAnalyzer platform (ENT207TC) via the uno CLI.\n---\n\n'; cat agent/AGENT.md; } > ~/.claude/skills/unoanalyzer/SKILL.md
+  ```
+
+接好后，对 agent 说“看看 ENT207TC 本周要做什么”“提交我的周记”等，它会自动调用 `uno`。
 
 ## 开发
 
