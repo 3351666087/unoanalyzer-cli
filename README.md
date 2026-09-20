@@ -132,13 +132,15 @@ agent 都能用。把它（可选加上 `endpoints.md`）作为系统上下文/�
   描述或检索文档载入。
 - **读取 `AGENTS.md` 的编码 agent**（Codex / Cursor / Windsurf …）：仓库根的
   [`AGENTS.md`](AGENTS.md) 已指向操作指南，开箱即用。
-- **Claude Code / Anthropic Agent Skills**：`agent/AGENT.md` 末尾给了转成 SKILL.md
-  的 3 行 front-matter 模板：
+- **Claude Code / Anthropic Agent Skills**：仓库自带一键安装脚本（构建并 link `uno`，
+  再从 `agent/AGENT.md` 生成带 front-matter 的 `SKILL.md`）：
 
   ```bash
-  mkdir -p ~/.claude/skills/unoanalyzer
-  { printf -- '---\nname: unoanalyzer\ndescription: Operate the UnoAnalyzer platform (ENT207TC) via the uno CLI.\n---\n\n'; cat agent/AGENT.md; } > ~/.claude/skills/unoanalyzer/SKILL.md
+  bash scripts/install-claude-skill.sh
   ```
+
+  它会把技能装到 `~/.claude/skills/unoanalyzer/`（可用 `CLAUDE_SKILLS_DIR` 改位置）。
+  也可手动：`agent/AGENT.md` 末尾给了 3 行 front-matter 模板，拼到文件开头即可。
 
 接好后，对 agent 说“看看 ENT207TC 本周要做什么”“提交我的周记”等，它会自动调用 `uno`。
 
