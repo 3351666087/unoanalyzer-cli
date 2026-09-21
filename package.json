@@ -1,6 +1,6 @@
 {
   "name": "unoanalyzer-cli",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Self-updating command-line client for the UnoAnalyzer learning-intelligence platform (cn.unoanalyzer.com). Built around the ENT207TC student workflow, but auto-discovers the platform's full API so its command set stays in sync as the platform evolves.",
   "type": "module",
   "bin": {

@@ -77,7 +77,7 @@ CLI resolves either. "My group" is detected automatically from membership.
 | Weekly briefing | `uno brief ENT207TC --json` |
 | My mentor | `uno mentor ENT207TC --json` |
 | My group | `uno group show ENT207TC` · `uno group activity ENT207TC` · `uno group members ENT207TC` · `uno group milestones ENT207TC` |
-| Add a group task | `uno group task-add ENT207TC "text"` |
+| Group tasks (Kanban) | `uno group task-add ENT207TC "title"` · `uno group task-move ENT207TC <taskId> done` · `uno group task-deadline ENT207TC <taskId> 2026-10-20` · `uno group task-remove ENT207TC <taskId>` |
 | Weekly logs | `uno log list ENT207TC` · `uno log show ENT207TC <week>` |
 | Submit my weekly entry | `uno log submit ENT207TC <week> -t "what I did"` |
 | Evidence records | `uno record list` · `uno record show <id>` |

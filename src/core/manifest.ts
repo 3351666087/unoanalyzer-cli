@@ -23,9 +23,14 @@ export function mergeEndpoints(discovered: Endpoint[]): Endpoint[] {
   for (const c of CURATED_ENDPOINTS) {
     const key = c.method + " " + c.path;
     const disc = discByKey.get(key);
+    // Union body fields: keep curated-known ones (so a multi-field partial-update
+    // endpoint isn't narrowed to whatever one call the scanner happened to see)
+    // while still absorbing any newly-discovered fields.
+    const union = [...(c.bodyFields ?? [])];
+    for (const f of disc?.bodyFields ?? []) if (!union.includes(f)) union.push(f);
     byKey.set(key, {
       ...c,
-      bodyFields: disc?.bodyFields?.length ? disc.bodyFields : c.bodyFields,
+      bodyFields: union.length ? union : undefined,
       multipart: c.multipart ?? disc?.multipart,
     });
   }

@@ -66,6 +66,9 @@ uno brief ENT207TC               # 本周 AI 简报
 uno mentor ENT207TC              # 我的导师
 uno group show ENT207TC          # 我的小组
 uno group activity ENT207TC      # 小组动态
+uno group task-add ENT207TC "调研竞品"        # 加看板任务
+uno group task-move ENT207TC <taskId> done   # 挪卡片 (todo/doing/done)
+uno group task-deadline ENT207TC <taskId> 2026-10-20  # 设截止日期
 uno log list ENT207TC            # 周记列表
 uno log submit ENT207TC 2 -t "完成桌面调研与问题界定"
 uno record list                  # 我的能力证据记录

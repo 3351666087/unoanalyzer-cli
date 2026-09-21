@@ -106,6 +106,62 @@ export function register(program: Command): void {
       })
     );
 
+  // Friendly Kanban-column aliases → backend task status values.
+  const STATUS_ALIASES: Record<string, string> = {
+    todo: "not_started",
+    not_started: "not_started",
+    backlog: "not_started",
+    doing: "on_track",
+    in_progress: "on_track",
+    inprogress: "on_track",
+    on_track: "on_track",
+    ahead: "ahead",
+    behind: "behind",
+    done: "done",
+    complete: "done",
+    completed: "done",
+  };
+
+  group
+    .command("task-move <idOrCode> <taskId> <status>")
+    .description("Move a task card (status: not_started|on_track|ahead|behind|done, or todo/doing/done)")
+    .action(
+      action(async function (this: Command, idOrCode: string, taskId: string, status: string) {
+        const { json } = opts(this);
+        const { group } = await requireGroup(idOrCode);
+        const mapped = STATUS_ALIASES[status.toLowerCase()] ?? status;
+        const field = resolveBodyField("group.taskUpdate", ["status"]);
+        const result = await api.patch(`/groups/${group.id}/tasks/${taskId}`, { [field]: mapped });
+        present(json, result, () => log.ok(`Moved task ${taskId} → ${mapped}.`));
+      })
+    );
+
+  group
+    .command("task-deadline <idOrCode> <taskId> <date>")
+    .description("Set a task's internal deadline (ISO date, e.g. 2026-10-01)")
+    .action(
+      action(async function (this: Command, idOrCode: string, taskId: string, date: string) {
+        const { json } = opts(this);
+        const { group } = await requireGroup(idOrCode);
+        // Partial update via PATCH (the backend rejects PUT on this path).
+        const field = resolveBodyField("group.taskUpdate", ["internal_deadline", "dueDate"]);
+        const result = await api.patch(`/groups/${group.id}/tasks/${taskId}`, { [field]: date });
+        present(json, result, () => log.ok(`Set deadline for task ${taskId} → ${date}.`));
+      })
+    );
+
+  group
+    .command("task-remove <idOrCode> <taskId>")
+    .description("Remove a task from your group")
+    .action(
+      action(async function (this: Command, idOrCode: string, taskId: string) {
+        const { json } = opts(this);
+        const { group } = await requireGroup(idOrCode);
+        const result = await api.del(`/groups/${group.id}/tasks/${taskId}`);
+        present(json, result ?? { ok: true }, () => log.ok(`Removed task ${taskId}.`));
+      })
+    );
+
   group
     .command("task-add <idOrCode> <title>")
     .description("Add a task to your group")

@@ -1,13 +1,13 @@
 {
-  "syncedAt": "2026-09-20T09:34:21.872Z",
-  "bundleHash": "COpd18M4",
-  "count": 318,
+  "syncedAt": "2026-09-21T02:38:16.699Z",
+  "bundleHash": "B_feRue0",
+  "count": 433,
   "endpoints": [
     {
       "id": "get_admin_full_script",
       "method": "GET",
       "path": "/api/admin/full-script",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "uid",
@@ -21,7 +21,7 @@
       "id": "get_admin_institutions",
       "method": "GET",
       "path": "/api/admin/institutions",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "uid",
@@ -35,7 +35,7 @@
       "id": "post_admin_institutions_institutionid_subaccounts",
       "method": "POST",
       "path": "/api/admin/institutions/:institutionId/subaccounts",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "institutionId",
@@ -52,7 +52,7 @@
       "id": "get_admin_prompts",
       "method": "GET",
       "path": "/api/admin/prompts",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "uid",
@@ -66,7 +66,7 @@
       "id": "put_admin_prompts_promptid",
       "method": "PUT",
       "path": "/api/admin/prompts/:promptId",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "promptId",
@@ -83,7 +83,7 @@
       "id": "get_admin_users",
       "method": "GET",
       "path": "/api/admin/users",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "uid",
@@ -97,7 +97,7 @@
       "id": "delete_admin_users_userid",
       "method": "DELETE",
       "path": "/api/admin/users/:userId",
-      "category": "admin-CZs8Lp",
+      "category": "admin",
       "params": [
         {
           "name": "userId",
@@ -263,7 +263,7 @@
       "id": "get_references_validate",
       "method": "GET",
       "path": "/api/references/validate",
-      "category": "ai",
+      "category": "ai-Ckin",
       "params": [],
       "source": "discovered"
     },
@@ -271,7 +271,7 @@
       "id": "get_winston_ai_detection",
       "method": "GET",
       "path": "/api/winston/ai-detection",
-      "category": "ai",
+      "category": "ai-Ckin",
       "params": [],
       "source": "discovered"
     },
@@ -279,7 +279,7 @@
       "id": "get_winston_plagiarism",
       "method": "GET",
       "path": "/api/winston/plagiarism",
-      "category": "ai",
+      "category": "ai-Ckin",
       "params": [],
       "source": "discovered"
     },
@@ -372,7 +372,7 @@
       "source": "discovered"
     },
     {
-      "id": "post_courses_courseid_materials",
+      "id": "post_courses_courseid_materials_2",
       "method": "POST",
       "path": "/api/courses/:courseId/materials",
       "category": "AssessmentEvaluationsPage",
@@ -624,6 +624,48 @@
       "source": "discovered"
     },
     {
+      "id": "get_student_studentid_verified_profile",
+      "method": "GET",
+      "path": "/api/cn/student/:studentId/verified-profile",
+      "category": "capabilities",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_student_studentid_verified_profile",
+      "method": "PATCH",
+      "path": "/api/cn/student/:studentId/verified-profile",
+      "category": "capabilities",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_student_studentid_verified_profile_share_token_rotate",
+      "method": "POST",
+      "path": "/api/cn/student/:studentId/verified-profile/share-token/rotate",
+      "category": "capabilities",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "capabilities.list",
       "method": "GET",
       "path": "/api/cn/student/:studentUid/capabilities",
@@ -736,6 +778,20 @@
       "source": "discovered"
     },
     {
+      "id": "get_student_studentid_capability_synthesis",
+      "method": "GET",
+      "path": "/api/cn/student/:studentId/capability-synthesis",
+      "category": "CapabilitySynthesisPage",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "post_student_studentid_capability_synthesis_generate",
       "method": "POST",
       "path": "/api/cn/student/:studentId/capability-synthesis/generate",
@@ -746,6 +802,64 @@
           "in": "path",
           "required": true
         }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_competitions",
+      "method": "GET",
+      "path": "/api/cn/competitions",
+      "category": "CompetitionsDiscoverPage",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_competitions_competitionid",
+      "method": "GET",
+      "path": "/api/cn/competitions/:competitionId",
+      "category": "CompetitionsDiscoverPage",
+      "params": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_competitions_competitionid_course_fit",
+      "method": "POST",
+      "path": "/api/cn/competitions/:competitionId/course-fit",
+      "category": "CompetitionsDiscoverPage",
+      "params": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "course_id",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_competitions_competitionid_register",
+      "method": "POST",
+      "path": "/api/cn/competitions/:competitionId/register",
+      "category": "CompetitionsDiscoverPage",
+      "params": [
+        {
+          "name": "competitionId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "teamName"
       ],
       "source": "discovered"
     },
@@ -804,17 +918,31 @@
       "source": "discovered"
     },
     {
-      "id": "post_auth_resend_otp",
-      "method": "POST",
-      "path": "/api/auth/resend-otp",
-      "category": "core",
-      "params": [],
+      "id": "get_student_studentid_competitions",
+      "method": "GET",
+      "path": "/api/cn/student/:studentId/competitions",
+      "category": "CompetitionsDiscoverPage",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
       "source": "discovered"
     },
     {
       "id": "get_auth_verify_otp",
       "method": "GET",
       "path": "/api/auth/verify-otp",
+      "category": "core",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_api_auth_resend_otp",
+      "method": "POST",
+      "path": "/api/cn/api/auth/resend-otp",
       "category": "core",
       "params": [],
       "source": "discovered"
@@ -841,6 +969,17 @@
       "path": "/api/cn/auth/terms-status",
       "category": "core",
       "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_feedback",
+      "method": "POST",
+      "path": "/api/cn/feedback",
+      "category": "core",
+      "params": [],
+      "bodyFields": [
+        "kind"
+      ],
       "source": "discovered"
     },
     {
@@ -1068,10 +1207,10 @@
       "source": "discovered"
     },
     {
-      "id": "get_courses_courseid_materials_materialid_url_2",
+      "id": "get_courses_courseid_materials_materialid_url_3",
       "method": "GET",
       "path": "/api/courses/:courseId/materials/:materialId/url",
-      "category": "CourseAlignmentPage-DFsJ_C",
+      "category": "CourseAlignmentPage",
       "params": [
         {
           "name": "courseId",
@@ -1087,10 +1226,220 @@
       "source": "discovered"
     },
     {
+      "id": "get_courses_courseid_assessments_assessmentid_capabilities",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/assessments/:assessmentId/capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "assessmentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_assessments_assessmentid_confirm_capabilities",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/assessments/:assessmentId/confirm-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "assessmentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_assessments_assessmentid_generate_capabilities",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/assessments/:assessmentId/generate-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "assessmentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_capabilities_confirm_all",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/capabilities/confirm-all",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_lo_capabilities",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/lo-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_milestones_milestoneid",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/milestones/:milestoneId",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "milestoneId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_milestones_milestoneid_capabilities",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/milestones/:milestoneId/capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "milestoneId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_regenerate_lo_capabilities",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/regenerate-lo-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_nace_taxonomy",
+      "method": "GET",
+      "path": "/api/cn/nace/taxonomy",
+      "category": "courseCapabilities",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_regenerate_lo_capabilities_2",
+      "method": "POST",
+      "path": "/api/courses/:courseId/regenerate-lo-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "confirmed"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_staging_stagingid_assessments_assessmentid_generate_capabilities",
+      "method": "POST",
+      "path": "/api/courses/staging/:stagingId/assessments/:assessmentId/generate-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "stagingId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "assessmentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "materials",
+        "assessment"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_staging_stagingid_generate_lo_capabilities",
+      "method": "POST",
+      "path": "/api/courses/staging/:stagingId/generate-lo-capabilities",
+      "category": "courseCapabilities",
+      "params": [
+        {
+          "name": "stagingId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "materials"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_nace_taxonomy_2",
+      "method": "GET",
+      "path": "/api/nace/taxonomy",
+      "category": "courseCapabilities",
+      "params": [],
+      "source": "discovered"
+    },
+    {
       "id": "get_courses_courseid_activity_summary",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/activity-summary",
-      "category": "CourseDetailPage",
+      "category": "CourseDetailPage-D6sux",
       "params": [
         {
           "name": "courseId",
@@ -1104,7 +1453,7 @@
       "id": "get_courses_courseid_ai_usage",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/ai-usage",
-      "category": "CourseDetailPage",
+      "category": "CourseDetailPage-D6sux",
       "params": [
         {
           "name": "courseId",
@@ -1115,6 +1464,124 @@
           "name": "days",
           "in": "query",
           "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_faculty_facultyid_briefings",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/briefings",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "course_id",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_faculty_facultyid_briefings_generate",
+      "method": "POST",
+      "path": "/api/cn/faculty/:facultyId/briefings/generate",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "course_id",
+        "language"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_faculty_facultyid_course_courseid_discussion_starters",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/discussion-starters",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_faculty_facultyid_course_courseid_faq",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/faq",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_faculty_facultyid_course_courseid_faq_faqid",
+      "method": "PATCH",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/faq/:faqId",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "faqId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_faculty_facultyid_course_courseid_faq_generate",
+      "method": "POST",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/faq/generate",
+      "category": "courseIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
         }
       ],
       "source": "discovered"
@@ -1239,6 +1706,25 @@
       "source": "discovered"
     },
     {
+      "id": "delete_courses_courseid_messages_messageid",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/messages/:messageId",
+      "category": "courseMessages",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "messageId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "get_activity",
       "method": "GET",
       "path": "/api/activity",
@@ -1270,6 +1756,21 @@
       "source": "discovered"
     },
     {
+      "id": "course.detail",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "curated",
+      "description": "Full course detail: assessments, milestones, sessions, materials, weights."
+    },
+    {
       "id": "patch_courses_courseid",
       "method": "PATCH",
       "path": "/api/cn/courses/:courseId",
@@ -1293,9 +1794,9 @@
       "source": "discovered"
     },
     {
-      "id": "course.detail",
-      "method": "GET",
-      "path": "/api/cn/courses/:courseId",
+      "id": "post_courses_courseid_ask",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/ask",
       "category": "courses",
       "params": [
         {
@@ -1304,8 +1805,257 @@
           "required": true
         }
       ],
-      "source": "curated",
-      "description": "Full course detail: assessments, milestones, sessions, materials, weights."
+      "bodyFields": [
+        "question"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_co_instructors",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/co-instructors",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "email"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_courses_courseid_co_instructors_coinstructorid",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/co-instructors/:coInstructorId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "coInstructorId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_floor_map_floormapid",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_floor_map_floormapid",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_floor_map_floormapid_areas",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/areas",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_floor_map_floormapid_areas_areaid",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/areas/:areaId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "areaId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_courses_courseid_floor_map_floormapid_areas_areaid",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/areas/:areaId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "areaId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_floor_map_floormapid_areas_areaid_assign",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/areas/:areaId/assign",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "areaId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_floor_map_floormapid_image",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/image",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "multipart": true,
+      "source": "discovered"
+    },
+    {
+      "id": "delete_courses_courseid_floor_map_floormapid_image",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/image",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "put_courses_courseid_floor_map_floormapid_tables_tableid",
+      "method": "PUT",
+      "path": "/api/cn/courses/:courseId/floor-map/:floorMapId/tables/:tableId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "floorMapId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "tableId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "number",
+        "x",
+        "y"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_grade_suggestions",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/grade-suggestions",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
     },
     {
       "id": "course.handbook",
@@ -1321,6 +2071,92 @@
       ],
       "source": "curated",
       "description": "Course handbook brief."
+    },
+    {
+      "id": "get_courses_courseid_materials",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/materials",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_materials",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/materials",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "multipart": true,
+      "source": "discovered"
+    },
+    {
+      "id": "delete_courses_courseid_materials_materialid",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/materials/:materialId",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "materialId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_materials_materialid_url",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/materials/:materialId/url",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "materialId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_materials_link",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/materials/link",
+      "category": "courses",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "kind",
+        "title",
+        "url"
+      ],
+      "source": "discovered"
     },
     {
       "id": "course.messages",
@@ -1381,20 +2217,6 @@
       ],
       "source": "curated",
       "description": "Recent evidence/proof activity across the course."
-    },
-    {
-      "id": "get_courses_courseid_roster",
-      "method": "GET",
-      "path": "/api/cn/courses/:courseId/roster",
-      "category": "courses",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
     },
     {
       "id": "course.surveyRespond",
@@ -1836,7 +2658,7 @@
       "id": "post_courses_courseid_staff_schedule_lock",
       "method": "POST",
       "path": "/api/cn/courses/:courseId/staff-schedule-lock",
-      "category": "CourseSchedulingPage",
+      "category": "CourseSchedulingPage-DbScFy",
       "params": [
         {
           "name": "courseId",
@@ -1846,6 +2668,96 @@
       ],
       "bodyFields": [
         "locked"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_schedule_view_preference",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/schedule-view-preference",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_schedule_view_preference",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/schedule-view-preference",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "view"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_timeline",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/timeline",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_timeline",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/timeline",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_timeline_approve",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/timeline/approve",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_timeline_pinned_weeks",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/timeline/pinned-weeks",
+      "category": "courseTimeline",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "weeks"
       ],
       "source": "discovered"
     },
@@ -1907,100 +2819,6 @@
       "source": "discovered"
     },
     {
-      "id": "post_assessments_assessmentid_drafts",
-      "method": "POST",
-      "path": "/api/assessments/:assessmentId/drafts",
-      "category": "drafts",
-      "params": [
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "multipart": true,
-      "source": "discovered"
-    },
-    {
-      "id": "get_assessments_assessmentid_drafts",
-      "method": "GET",
-      "path": "/api/assessments/:assessmentId/drafts",
-      "category": "drafts",
-      "params": [
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_drafts_submit",
-      "method": "GET",
-      "path": "/api/cn/drafts/submit",
-      "category": "drafts",
-      "params": [],
-      "source": "discovered"
-    },
-    {
-      "id": "get_student_studentid_assessments_assessmentid_drafts",
-      "method": "GET",
-      "path": "/api/cn/student/:studentId/assessments/:assessmentId/drafts",
-      "category": "drafts",
-      "params": [
-        {
-          "name": "studentId",
-          "in": "path",
-          "required": true
-        },
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_student_studentid_assessments_assessmentid_draft_progression",
-      "method": "GET",
-      "path": "/api/student/:studentId/assessments/:assessmentId/draft-progression",
-      "category": "drafts",
-      "params": [
-        {
-          "name": "studentId",
-          "in": "path",
-          "required": true
-        },
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_student_studentid_assessments_assessmentid_drafts_2",
-      "method": "GET",
-      "path": "/api/student/:studentId/assessments/:assessmentId/drafts",
-      "category": "drafts",
-      "params": [
-        {
-          "name": "studentId",
-          "in": "path",
-          "required": true
-        },
-        {
-          "name": "assessmentId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
       "id": "get_to_english",
       "method": "GET",
       "path": "/api/cn/to-english",
@@ -2012,8 +2830,98 @@
       "id": "post_faculty_application",
       "method": "POST",
       "path": "/api/v1/faculty-application",
-      "category": "FacultyApplyModal-XP0jb7",
+      "category": "FacultyApplyModal",
       "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_faculty_facultyid_course_courseid_cohort_conversation",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/cohort-conversation",
+      "category": "facultyIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_faculty_facultyid_course_courseid_cohort_conversation_generate",
+      "method": "POST",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/cohort-conversation/generate",
+      "category": "facultyIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_faculty_facultyid_course_courseid_invisible_moments",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/invisible-moments",
+      "category": "facultyIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_faculty_facultyid_course_courseid_invisible_moments_generate",
+      "method": "POST",
+      "path": "/api/cn/faculty/:facultyId/course/:courseId/invisible-moments/generate",
+      "category": "facultyIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_faculty_facultyid_cpd",
+      "method": "POST",
+      "path": "/api/cn/faculty/:facultyId/cpd",
+      "category": "facultyIntelligence",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        }
+      ],
       "source": "discovered"
     },
     {
@@ -2119,6 +3027,34 @@
       "source": "discovered"
     },
     {
+      "id": "get_courses_courseid_group_settings",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/group-settings",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "put_courses_courseid_group_settings",
+      "method": "PUT",
+      "path": "/api/cn/courses/:courseId/group-settings",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "groups.list",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/groups",
@@ -2146,7 +3082,14 @@
         }
       ],
       "source": "curated",
-      "description": "Create a group in a course."
+      "description": "Create a group in a course.",
+      "bodyFields": [
+        "name",
+        "number",
+        "void0",
+        "sessionId",
+        "session_id"
+      ]
     },
     {
       "id": "group.delete",
@@ -2167,6 +3110,109 @@
       ],
       "source": "curated",
       "description": "Delete a group."
+    },
+    {
+      "id": "get_courses_courseid_groups_draft_stats",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/groups/draft-stats",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_groups_proof_counts",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/groups/proof-counts",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_nudges",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/nudges",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "student_uid",
+        "all_inactive",
+        "inactive_days",
+        "message"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_project_requests",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/project-requests",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_quiet_students",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/quiet-students",
+      "category": "groups",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "days",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_groups_groupid_arg2",
+      "method": "POST",
+      "path": "/api/cn/groups/:groupId/:arg2",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "arg2",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "email"
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.activity",
@@ -2197,6 +3243,20 @@
       ],
       "source": "curated",
       "description": "Mark contribution activity as read."
+    },
+    {
+      "id": "get_groups_groupid_files",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/files",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.fileUpload",
@@ -2265,7 +3325,10 @@
         }
       ],
       "source": "curated",
-      "description": "Set the group leader."
+      "description": "Set the group leader.",
+      "bodyFields": [
+        "uid"
+      ]
     },
     {
       "id": "group.leave",
@@ -2288,6 +3351,30 @@
       "description": "Leave a group."
     },
     {
+      "id": "delete_groups_groupid_members_memberid",
+      "method": "DELETE",
+      "path": "/api/cn/groups/:groupId/members/:memberId",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "memberId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "course_id",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "group.milestoneCompletions",
       "method": "GET",
       "path": "/api/cn/groups/:groupId/milestone-completions",
@@ -2301,6 +3388,28 @@
       ],
       "source": "curated",
       "description": "Milestone completion state for a group."
+    },
+    {
+      "id": "post_groups_groupid_milestone_completions_milestonecompletionid_toggle",
+      "method": "POST",
+      "path": "/api/cn/groups/:groupId/milestone-completions/:milestoneCompletionId/toggle",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "milestoneCompletionId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "uid"
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.toggleMilestone",
@@ -2353,7 +3462,38 @@
         }
       ],
       "source": "curated",
-      "description": "Set/choose the group's project."
+      "description": "Set/choose the group's project.",
+      "bodyFields": [
+        "project_id"
+      ]
+    },
+    {
+      "id": "post_groups_groupid_project_request",
+      "method": "POST",
+      "path": "/api/cn/groups/:groupId/project-request",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_groups_groupid_project_request",
+      "method": "DELETE",
+      "path": "/api/cn/groups/:groupId/project-request",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.studentActivity",
@@ -2369,6 +3509,37 @@
       ],
       "source": "curated",
       "description": "Per-student contribution activity in a group."
+    },
+    {
+      "id": "patch_groups_groupid_table",
+      "method": "PATCH",
+      "path": "/api/cn/groups/:groupId/table",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "number"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_groups_groupid_tasks",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/tasks",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.taskAdd",
@@ -2388,6 +3559,52 @@
       ],
       "source": "curated",
       "description": "Add a task. Body: { title, internal_deadline? }."
+    },
+    {
+      "id": "group.taskUpdate",
+      "method": "PATCH",
+      "path": "/api/cn/groups/:groupId/tasks/:taskId",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "taskId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "status",
+        "internal_deadline"
+      ],
+      "source": "curated",
+      "description": "Update a task (partial). Body: { status?(not_started|on_track|ahead|behind|done), internal_deadline? }."
+    },
+    {
+      "id": "put_groups_groupid_tasks_taskid",
+      "method": "PUT",
+      "path": "/api/cn/groups/:groupId/tasks/:taskId",
+      "category": "groups",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "taskId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "internal_deadline"
+      ],
+      "source": "discovered"
     },
     {
       "id": "group.taskRemove",
@@ -2410,6 +3627,20 @@
       "description": "Remove a task."
     },
     {
+      "id": "patch_project_requests_projectrequestid_review",
+      "method": "PATCH",
+      "path": "/api/cn/project-requests/:projectRequestId/review",
+      "category": "groups",
+      "params": [
+        {
+          "name": "projectRequestId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "get_courses_courseid_groups_mine",
       "method": "GET",
       "path": "/api/courses/:courseId/groups/mine",
@@ -2420,6 +3651,74 @@
           "in": "path",
           "required": true
         }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_groups_groupid_contribution",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/contribution",
+      "category": "GroupsPage",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_groups_groupid_pulse",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/pulse",
+      "category": "GroupsPage",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_groups_groupid_pulse",
+      "method": "POST",
+      "path": "/api/cn/groups/:groupId/pulse",
+      "category": "GroupsPage",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "text",
+        "status"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_groups_groupid_pulse_pulseid_react",
+      "method": "POST",
+      "path": "/api/cn/groups/:groupId/pulse/:pulseId/react",
+      "category": "GroupsPage",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "pulseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "type"
       ],
       "source": "discovered"
     },
@@ -2438,7 +3737,7 @@
       "source": "discovered"
     },
     {
-      "id": "get_courses_courseid_2",
+      "id": "get_courses_courseid_3",
       "method": "GET",
       "path": "/api/courses/:courseId",
       "category": "HandbookBriefPage",
@@ -2533,6 +3832,54 @@
       "path": "/api/import/portfolio/status",
       "category": "ImportPortfolioPage",
       "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_me_tasks",
+      "method": "GET",
+      "path": "/api/cn/me/tasks",
+      "category": "IndividualKanbanPage",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_me_tasks",
+      "method": "POST",
+      "path": "/api/cn/me/tasks",
+      "category": "IndividualKanbanPage",
+      "params": [],
+      "bodyFields": [
+        "title",
+        "status"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_me_tasks_taskid",
+      "method": "PATCH",
+      "path": "/api/cn/me/tasks/:taskId",
+      "category": "IndividualKanbanPage",
+      "params": [
+        {
+          "name": "taskId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_me_tasks_taskid",
+      "method": "DELETE",
+      "path": "/api/cn/me/tasks/:taskId",
+      "category": "IndividualKanbanPage",
+      "params": [
+        {
+          "name": "taskId",
+          "in": "path",
+          "required": true
+        }
+      ],
       "source": "discovered"
     },
     {
@@ -2743,7 +4090,7 @@
       "id": "get_contact",
       "method": "GET",
       "path": "/api/contact",
-      "category": "LandingPage",
+      "category": "LandingPage-DdyKL",
       "params": [],
       "source": "discovered"
     },
@@ -2751,7 +4098,7 @@
       "id": "get_interest",
       "method": "GET",
       "path": "/api/interest",
-      "category": "LandingPage",
+      "category": "LandingPage-DdyKL",
       "params": [],
       "source": "discovered"
     },
@@ -2793,25 +4140,6 @@
       "params": [
         {
           "name": "rubricId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_courses_courseid_arg2_2",
-      "method": "GET",
-      "path": "/api/cn/courses/:courseId/:arg2",
-      "category": "mentor",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        },
-        {
-          "name": "arg2",
           "in": "path",
           "required": true
         }
@@ -2880,6 +4208,37 @@
       "source": "discovered"
     },
     {
+      "id": "get_courses_courseid_my_section",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/my-section",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "put_courses_courseid_my_session",
+      "method": "PUT",
+      "path": "/api/cn/courses/:courseId/my-session",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "session_id"
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "get_courses_courseid_proposals_pending",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/proposals/pending",
@@ -2890,6 +4249,196 @@
           "in": "path",
           "required": true
         }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_roster_2",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/roster",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_sessions",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/sessions",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_sessions_2",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/sessions",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_courses_courseid_sessions_sessionid_2",
+      "method": "DELETE",
+      "path": "/api/cn/courses/:courseId/sessions/:sessionId",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "sessionId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_courses_courseid_sessions_sessionid_2",
+      "method": "PATCH",
+      "path": "/api/cn/courses/:courseId/sessions/:sessionId",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "sessionId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_staff_availability",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/staff-availability",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_staff_availability_staffavailabilityid",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/staff-availability/:staffAvailabilityId",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "staffAvailabilityId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "put_courses_courseid_staff_availability_staffavailabilityid",
+      "method": "PUT",
+      "path": "/api/cn/courses/:courseId/staff-availability/:staffAvailabilityId",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "staffAvailabilityId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_staff_locks",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/staff-locks",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_staff_locks_stafflockid",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/staff-locks/:staffLockId",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "staffLockId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "locked"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "put_courses_courseid_staff_staffid_note",
+      "method": "PUT",
+      "path": "/api/cn/courses/:courseId/staff/:staffId/note",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "staffId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "note"
       ],
       "source": "discovered"
     },
@@ -2912,6 +4461,39 @@
       ],
       "bodyFields": [
         "office_hours"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_students_studentid_reset_password",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/students/:studentId/reset-password",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_courses_courseid_ta_hours",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/ta-hours",
+      "category": "mentor",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
       ],
       "source": "discovered"
     },
@@ -3107,7 +4689,7 @@
       "id": "get_moderation",
       "method": "GET",
       "path": "/api/moderation",
-      "category": "moderation",
+      "category": "moderation-BU",
       "params": [],
       "source": "discovered"
     },
@@ -3115,7 +4697,7 @@
       "id": "get_submissions_submissionid_2",
       "method": "GET",
       "path": "/api/submissions/:submissionId",
-      "category": "moderation",
+      "category": "moderation-BU",
       "params": [
         {
           "name": "submissionId",
@@ -3129,7 +4711,7 @@
       "id": "post_submissions_submissionid_claim",
       "method": "POST",
       "path": "/api/submissions/:submissionId/claim",
-      "category": "moderation",
+      "category": "moderation-BU",
       "params": [
         {
           "name": "submissionId",
@@ -3143,7 +4725,7 @@
       "id": "post_submissions_submissionid_moderate",
       "method": "POST",
       "path": "/api/submissions/:submissionId/moderate",
-      "category": "moderation",
+      "category": "moderation-BU",
       "params": [
         {
           "name": "submissionId",
@@ -3247,13 +4829,187 @@
       "source": "discovered"
     },
     {
-      "id": "get_apiid",
+      "id": "get_faculty_facultyid_cross_course_students",
+      "method": "GET",
+      "path": "/api/cn/faculty/:facultyId/cross-course-students",
+      "category": "profiles",
+      "params": [
+        {
+          "name": "facultyId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_students_studentid_cross_course_profile",
+      "method": "GET",
+      "path": "/api/cn/students/:studentId/cross-course-profile",
+      "category": "profiles",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "faculty_uid",
+          "in": "query",
+          "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_project_requirements_generate",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/project-requirements/generate",
+      "category": "projectProposals",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_groups_groupid_proposals",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/proposals",
+      "category": "projectProposals",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_proposals_proposalid_feedback",
+      "method": "POST",
+      "path": "/api/cn/proposals/:proposalId/feedback",
+      "category": "projectProposals",
+      "params": [
+        {
+          "name": "proposalId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_proposals_proposalid_files_delete",
+      "method": "POST",
+      "path": "/api/cn/proposals/:proposalId/files/delete",
+      "category": "projectProposals",
+      "params": [
+        {
+          "name": "proposalId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "object_key"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_proposals_proposalid_review",
+      "method": "POST",
+      "path": "/api/cn/proposals/:proposalId/review",
+      "category": "projectProposals",
+      "params": [
+        {
+          "name": "proposalId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "decision",
+        "note"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_apiid_2",
       "method": "GET",
       "path": "/api/:apiId",
       "category": "projects",
       "params": [
         {
           "name": "apiId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_projects",
+      "method": "POST",
+      "path": "/api/cn/projects",
+      "category": "projects",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_projects_projectid",
+      "method": "GET",
+      "path": "/api/cn/projects/:projectId",
+      "category": "projects",
+      "params": [
+        {
+          "name": "projectId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_projects_projectid",
+      "method": "PATCH",
+      "path": "/api/cn/projects/:projectId",
+      "category": "projects",
+      "params": [
+        {
+          "name": "projectId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_projects_projectid_explainer",
+      "method": "GET",
+      "path": "/api/cn/projects/:projectId/explainer",
+      "category": "projects",
+      "params": [
+        {
+          "name": "projectId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_projects_projectid_explainer",
+      "method": "POST",
+      "path": "/api/cn/projects/:projectId/explainer",
+      "category": "projects",
+      "params": [
+        {
+          "name": "projectId",
           "in": "path",
           "required": true
         }
@@ -3328,9 +5084,51 @@
       "source": "discovered"
     },
     {
+      "id": "post_projects_projectid_review",
+      "method": "POST",
+      "path": "/api/cn/projects/:projectId/review",
+      "category": "projects",
+      "params": [
+        {
+          "name": "projectId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "bodyFields": [
+        "decision",
+        "note"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_projects_admin_list",
+      "method": "GET",
+      "path": "/api/cn/projects/admin-list",
+      "category": "projects",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_projects_explainers_build_all",
+      "method": "POST",
+      "path": "/api/cn/projects/explainers/build-all",
+      "category": "projects",
+      "params": [],
+      "source": "discovered"
+    },
+    {
       "id": "get_projects_partner_accounts",
       "method": "GET",
       "path": "/api/cn/projects/partner-accounts",
+      "category": "projects",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_projects_pending",
+      "method": "GET",
+      "path": "/api/cn/projects/pending",
       "category": "projects",
       "params": [],
       "source": "discovered"
@@ -3363,7 +5161,7 @@
       "source": "discovered"
     },
     {
-      "id": "get_projects_projectid",
+      "id": "get_projects_projectid_2",
       "method": "GET",
       "path": "/api/projects/:projectId",
       "category": "projects",
@@ -3377,7 +5175,7 @@
       "source": "discovered"
     },
     {
-      "id": "patch_projects_projectid",
+      "id": "patch_projects_projectid_2",
       "method": "PATCH",
       "path": "/api/projects/:projectId",
       "category": "projects",
@@ -3730,6 +5528,20 @@
       "description": "Remove an attached proof by index."
     },
     {
+      "id": "post_records_recordid_proof_attach_failed",
+      "method": "POST",
+      "path": "/api/cn/records/:recordId/proof-attach-failed",
+      "category": "records",
+      "params": [
+        {
+          "name": "recordId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "records.verify",
       "method": "POST",
       "path": "/api/cn/records/:recordId/verify",
@@ -3767,102 +5579,6 @@
       "source": "discovered"
     },
     {
-      "id": "get_analytics_cohort",
-      "method": "GET",
-      "path": "/api/analytics/cohort",
-      "category": "reports",
-      "params": [],
-      "source": "discovered"
-    },
-    {
-      "id": "post_analytics_course_alignment",
-      "method": "POST",
-      "path": "/api/analytics/course-alignment",
-      "category": "reports",
-      "params": [
-        {
-          "name": "course_id",
-          "in": "query",
-          "required": false
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "post_courses_courseid_alignment",
-      "method": "POST",
-      "path": "/api/cn/courses/:courseId/alignment",
-      "category": "reports",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_courses_courseid_alignment",
-      "method": "GET",
-      "path": "/api/cn/courses/:courseId/alignment",
-      "category": "reports",
-      "params": [
-        {
-          "name": "courseId",
-          "in": "path",
-          "required": true
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_reports",
-      "method": "GET",
-      "path": "/api/reports",
-      "category": "reports",
-      "params": [],
-      "source": "discovered"
-    },
-    {
-      "id": "get_reports_cohort_history",
-      "method": "GET",
-      "path": "/api/reports/cohort/history",
-      "category": "reports",
-      "params": [
-        {
-          "name": "course_id",
-          "in": "query",
-          "required": false
-        },
-        {
-          "name": "assessment_id",
-          "in": "query",
-          "required": false
-        }
-      ],
-      "source": "discovered"
-    },
-    {
-      "id": "get_reports_cohort_latest",
-      "method": "GET",
-      "path": "/api/reports/cohort/latest",
-      "category": "reports",
-      "params": [
-        {
-          "name": "course_id",
-          "in": "query",
-          "required": false
-        },
-        {
-          "name": "assessment_id",
-          "in": "query",
-          "required": false
-        }
-      ],
-      "source": "discovered"
-    },
-    {
       "id": "post_submissions_submissionid_reevaluate_2",
       "method": "POST",
       "path": "/api/submissions/:submissionId/reevaluate",
@@ -3881,7 +5597,7 @@
       "id": "get_courses_courseid_grade_distribution",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/grade-distribution",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "courseId",
@@ -3895,7 +5611,7 @@
       "id": "get_courses_courseid_lo_attainment",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/lo-attainment",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "courseId",
@@ -3909,7 +5625,7 @@
       "id": "get_courses_courseid_reader_consistency",
       "method": "GET",
       "path": "/api/cn/courses/:courseId/reader-consistency",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "courseId",
@@ -3923,7 +5639,7 @@
       "id": "get_research_overview",
       "method": "GET",
       "path": "/api/cn/research/overview",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [],
       "source": "discovered"
     },
@@ -3931,7 +5647,7 @@
       "id": "get_research_summary",
       "method": "GET",
       "path": "/api/cn/research/summary",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [],
       "source": "discovered"
     },
@@ -3939,7 +5655,7 @@
       "id": "get_faculty_facultyid_research_benchmark_export",
       "method": "GET",
       "path": "/api/faculty/:facultyId/research/benchmark-export",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "facultyId",
@@ -3953,7 +5669,7 @@
       "id": "get_faculty_facultyid_research_cohort_trends",
       "method": "GET",
       "path": "/api/faculty/:facultyId/research/cohort-trends",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "facultyId",
@@ -3967,7 +5683,7 @@
       "id": "get_faculty_facultyid_research_partner_impact",
       "method": "GET",
       "path": "/api/faculty/:facultyId/research/partner-impact",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "facultyId",
@@ -3981,7 +5697,7 @@
       "id": "get_faculty_facultyid_research_summary",
       "method": "GET",
       "path": "/api/faculty/:facultyId/research/summary",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "facultyId",
@@ -3995,7 +5711,7 @@
       "id": "get_faculty_facultyid_research_voice",
       "method": "GET",
       "path": "/api/faculty/:facultyId/research/voice",
-      "category": "ResearchPage",
+      "category": "ResearchPage-DQ1b",
       "params": [
         {
           "name": "facultyId",
@@ -4006,6 +5722,56 @@
           "name": "prompt_key",
           "in": "query",
           "required": false
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_rubrics",
+      "method": "POST",
+      "path": "/api/cn/rubrics",
+      "category": "rubrics",
+      "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "get_rubrics_rubricid",
+      "method": "GET",
+      "path": "/api/cn/rubrics/:rubricId",
+      "category": "rubrics",
+      "params": [
+        {
+          "name": "rubricId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_rubrics_rubricid_versions",
+      "method": "POST",
+      "path": "/api/cn/rubrics/:rubricId/versions",
+      "category": "rubrics",
+      "params": [
+        {
+          "name": "rubricId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_rubrics_templates_templateid_fork",
+      "method": "POST",
+      "path": "/api/cn/rubrics/templates/:templateId/fork",
+      "category": "rubrics",
+      "params": [
+        {
+          "name": "templateId",
+          "in": "path",
+          "required": true
         }
       ],
       "source": "discovered"
@@ -4063,6 +5829,110 @@
       "bodyFields": [
         "keep_profile_private",
         "profile_visible_sections"
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_student_studentid_courses_courseid_ensure_space",
+      "method": "POST",
+      "path": "/api/cn/student/:studentId/courses/:courseId/ensure-space",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_student_studentid_spaces",
+      "method": "GET",
+      "path": "/api/cn/student/:studentId/spaces",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "post_student_studentid_spaces",
+      "method": "POST",
+      "path": "/api/cn/student/:studentId/spaces",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "patch_student_studentid_spaces_spaceid",
+      "method": "PATCH",
+      "path": "/api/cn/student/:studentId/spaces/:spaceId",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "spaceId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "delete_student_studentid_spaces_spaceid",
+      "method": "DELETE",
+      "path": "/api/cn/student/:studentId/spaces/:spaceId",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "spaceId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_student_studentid_spaces_spaceid_records",
+      "method": "GET",
+      "path": "/api/cn/student/:studentId/spaces/:spaceId/records",
+      "category": "spaces",
+      "params": [
+        {
+          "name": "studentId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "spaceId",
+          "in": "path",
+          "required": true
+        }
       ],
       "source": "discovered"
     },
@@ -4336,6 +6206,39 @@
       "source": "discovered"
     },
     {
+      "id": "get_courses_courseid_arg2_4",
+      "method": "GET",
+      "path": "/api/cn/courses/:courseId/:arg2",
+      "category": "StudentCapabilitiesPage",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        },
+        {
+          "name": "arg2",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
+      "id": "get_groups_groupid_project_outcomes",
+      "method": "GET",
+      "path": "/api/cn/groups/:groupId/project-outcomes",
+      "category": "StudentCoursePage",
+      "params": [
+        {
+          "name": "groupId",
+          "in": "path",
+          "required": true
+        }
+      ],
+      "source": "discovered"
+    },
+    {
       "id": "get_courses_extract_syllabus_2",
       "method": "GET",
       "path": "/api/courses/extract-syllabus",
@@ -4347,7 +6250,7 @@
       "id": "get_ta_invites",
       "method": "GET",
       "path": "/api/ta-invites",
-      "category": "ta-Coo_YQ",
+      "category": "ta",
       "params": [],
       "source": "discovered"
     },
@@ -4355,7 +6258,7 @@
       "id": "post_ta_invites_tainviteid_revoke",
       "method": "POST",
       "path": "/api/ta-invites/:taInviteId/revoke",
-      "category": "ta-Coo_YQ",
+      "category": "ta",
       "params": [
         {
           "name": "taInviteId",
@@ -4369,7 +6272,7 @@
       "id": "get_ta_invites_by_token_bytokenid",
       "method": "GET",
       "path": "/api/ta-invites/by-token/:byTokenId",
-      "category": "ta-Coo_YQ",
+      "category": "ta",
       "params": [
         {
           "name": "byTokenId",
@@ -4383,7 +6286,7 @@
       "id": "get_ta_invites_claim",
       "method": "GET",
       "path": "/api/ta-invites/claim",
-      "category": "ta-Coo_YQ",
+      "category": "ta",
       "params": [],
       "source": "discovered"
     },
@@ -4393,6 +6296,20 @@
       "path": "/api/auth/student-signup-and-join",
       "category": "tier",
       "params": [],
+      "source": "discovered"
+    },
+    {
+      "id": "post_courses_courseid_invites",
+      "method": "POST",
+      "path": "/api/cn/courses/:courseId/invites",
+      "category": "tier",
+      "params": [
+        {
+          "name": "courseId",
+          "in": "path",
+          "required": true
+        }
+      ],
       "source": "discovered"
     },
     {

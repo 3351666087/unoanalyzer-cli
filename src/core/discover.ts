@@ -88,21 +88,51 @@ function makeId(method: string, path: string, taken: Set<string>): string {
   return id;
 }
 
-/** Build a name → template map for `function h(a){return`...`}` helpers. */
+/** Pick the best /api prefix literal out of a (possibly ternary) expression. */
+function pickApiPrefix(expr: string): string | undefined {
+  for (const pre of ["/api/cn", "/api/v1", "/api"]) {
+    if (new RegExp(`["'\`]${pre.replace(/\//g, "\\/")}["'\`]`).test(expr)) return pre;
+  }
+  return undefined;
+}
+
+/**
+ * Build a name → value map of path helpers used as `${helper()}` prefixes.
+ * Captures three shapes the bundler emits:
+ *   1. `function h(a){return`.../${x}...`}`         → the full template
+ *   2. `const h=(a)=>`.../${x}...``                  → the full template
+ *   3. `function h(){return f.chinaFeatures?"/api/cn":"/api"}` (or arrow/const)
+ *      → the resolved prefix string. Missing case (3) is what silently dropped
+ *      every `${h()}/...` endpoint before, since the path lost its /api base.
+ */
 function collectHelpers(src: string): Map<string, string> {
   const map = new Map<string, string>();
-  const reFn = /function\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*\{\s*return\s*`([^`]+)`\s*\}/g;
-  for (const m of src.matchAll(reFn)) map.set(m[1], m[2]);
-  const reArrow = /(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*\([^)]*\)\s*=>\s*`([^`]+)`/g;
-  for (const m of src.matchAll(reArrow)) map.set(m[1], m[2]);
+  const reFnTpl = /function\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*\{\s*return\s*`([^`]+)`\s*\}/g;
+  for (const m of src.matchAll(reFnTpl)) map.set(m[1], m[2]);
+  const reArrowTpl = /(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*\([^)]*\)\s*=>\s*`([^`]+)`/g;
+  for (const m of src.matchAll(reArrowTpl)) if (!map.has(m[1])) map.set(m[1], m[2]);
+  // String-prefix helpers (function form): return <expr with "/api...">
+  const reFnStr = /function\s+([A-Za-z_$][\w$]*)\s*\([^)]*\)\s*\{\s*return\s+([^{}]{0,160}?)\}/g;
+  for (const m of src.matchAll(reFnStr)) {
+    if (map.has(m[1])) continue;
+    const p = pickApiPrefix(m[2]);
+    if (p) map.set(m[1], p);
+  }
+  // String-prefix helpers (arrow / const-value form).
+  const reArrowStr = /(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:\([^)]*\)\s*=>\s*)?([^;]{0,160}?)[;,]/g;
+  for (const m of src.matchAll(reArrowStr)) {
+    if (map.has(m[1])) continue;
+    const p = pickApiPrefix(m[2]);
+    if (p) map.set(m[1], p);
+  }
   return map;
 }
 
-/** Inline `${helper(...)}` occurrences at the start of a path template. */
+/** Inline `${helper}` / `${helper(...)}` occurrences at the start of a path. */
 function inlineHelpers(tpl: string, helpers: Map<string, string>): string {
   let out = tpl;
-  for (let i = 0; i < 3; i++) {
-    const m = out.match(/^\$\{([A-Za-z_$][\w$]*)\([^)]*\)\}/);
+  for (let i = 0; i < 4; i++) {
+    const m = out.match(/^\$\{([A-Za-z_$][\w$]*)(?:\([^)]*\))?\}/);
     if (!m || !helpers.has(m[1])) break;
     out = helpers.get(m[1])! + out.slice(m[0].length);
   }
